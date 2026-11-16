@@ -1,0 +1,27 @@
+{
+  "descricao": "Roteiro da demonstração da Aula 6.2. Cada passo é enviado à interface (POST /api/chat), que conversa com o Rasa de verdade. `espera` são trechos que precisam aparecer na resposta do bot.",
+  "passos": [
+    {"ato": "1 · Saudação contextual", "fala": "bom dia", "intent": "greet_morning", "espera_um_de": ["Bom dia", "Boa tarde", "Boa noite"], "nota": "A saudação segue o relógio da máquina, não o que foi digitado."},
+    {"ato": "2 · Registro rápido", "fala": "bebi água", "intent": "registrar_atividade_rapido", "espera": ["Registrei: água", "Total hoje: 1 atividade."], "banco_atividades": 1},
+    {"ato": "2 · Registro rápido", "fala": "corri 30 minutos intenso", "espera": ["Registrei: corrida · 30 min · intensa", "Total hoje: 2 atividades."], "banco_atividades": 1},
+    {"ato": "3 · Normalização por regra", "fala": "meditei", "espera": ["Registrei: meditação"], "nota": "O NLU entrega 'meditei'; o catálogo grava 'meditação'."},
+    {"ato": "3 · Normalização por regra", "fala": "malhei 1 hora", "espera": ["Registrei: musculação · 60 min"], "nota": "Na v1 isto gravava 1 minuto."},
+    {"ato": "4 · Agenda", "fala": "agendar yoga amanhã às 7h", "intent": "agendar_atividade", "espera": ["Agendei: yoga para amanhã às 07:00"], "banco_agenda": 1},
+    {"ato": "4 · Agenda", "fala": "agendar caminhada hoje às 23h", "espera": ["Agendei: caminhada para hoje às 23:00"], "banco_agenda": 1},
+    {"ato": "4 · Agenda", "fala": "minha agenda", "intent": "ask_agenda", "espera": ["Caminhada - hoje às 23:00", "Yoga - amanhã às 07:00"]},
+    {"ato": "4 · Agenda", "fala": "caminhei 20 minutos", "espera": ["Registrei: caminhada · 20 min", "cumpre o que você tinha agendado para as 23:00"]},
+    {"ato": "5 · Formulário", "fala": "quero registrar uma atividade", "intent": "registrar_atividade_detalhado", "espera": ["Que tipo de atividade você fez?"]},
+    {"ato": "5 · Formulário", "fala": "natação", "espera": ["Por quantos minutos?"]},
+    {"ato": "5 · Formulário", "fala": "um tempão", "espera": ["Não entendi a duração", "Por quantos minutos?"], "nota": "Resposta inválida: a validação do formulário explica e pergunta de novo."},
+    {"ato": "5 · Formulário", "fala": "45", "espera": ["Qual foi a intensidade?"]},
+    {"ato": "5 · Formulário", "fala": "forte", "espera": ["Registrei: natação · 45 min · intensa"], "banco_atividades": 1},
+    {"ato": "6 · Cancelamento", "fala": "quero registrar exercício", "espera": ["Que tipo de atividade você fez?"], "nota": "Na v1 o bot pulava esta pergunta."},
+    {"ato": "6 · Cancelamento", "fala": "cancelar", "intent": "stop", "espera": ["cancelado"], "nota": "Na v1 o formulário continuava ativo."},
+    {"ato": "6 · Cancelamento", "fala": "como estou hoje?", "intent": "ask_progresso_hoje", "espera": ["Seu progresso hoje (6 atividades)"], "nao_espera": ["Que tipo de atividade"]},
+    {"ato": "7 · Falhas de propósito", "fala": "tomei um café", "espera": ["não identifiquei a atividade"], "falha_proposital": true, "nota": "Classificador de mundo fechado: sempre escolhe um dos intents que conhece."},
+    {"ato": "7 · Falhas de propósito", "fala": "bebi h2o", "espera": ["não identifiquei a atividade"], "apos_correcao": ["Registrei: água"], "falha_proposital": true, "nota": "É a falha corrigida ao vivo com `python run.py corrigir-ao-vivo`."},
+    {"ato": "8 · Encerramento", "fala": "qual a capital da França?", "espera": ["fora da minha área"]},
+    {"ato": "8 · Encerramento", "fala": "tchau", "intent": "goodbye", "espera_um_de": ["Até logo", "Tchau", "Até mais"]}
+  ],
+  "isolamento": {"fala": "como estou hoje?", "espera": ["ainda não registrou nenhuma atividade hoje"], "nota": "Outro usuário não enxerga os registros do primeiro."}
+}

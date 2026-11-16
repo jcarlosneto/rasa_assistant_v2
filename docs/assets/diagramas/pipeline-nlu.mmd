@@ -1,0 +1,12 @@
+flowchart TD
+    T["Texto: malhei 1 hora"] --> K["WhitespaceTokenizer"]
+    K --> F1["RegexFeaturizer"]
+    F1 --> F2["LexicalSyntacticFeaturizer"]
+    F2 --> F3["CountVectorsFeaturizer (palavras)"]
+    F3 --> F4["CountVectorsFeaturizer (pedaços de palavra)"]
+    F4 --> D["DIETClassifier<br/>intenção + entidades"]
+    D --> S["EntitySynonymMapper"]
+    S --> RS["ResponseSelector"]
+    RS --> FB{"confiança < 0,5?"}
+    FB -->|"sim"| NF["nlu_fallback"]
+    FB -->|"não"| OK["intenção e entidades seguem para o Core"]

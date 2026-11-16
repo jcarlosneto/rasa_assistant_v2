@@ -1,0 +1,21 @@
+# DEPENDENCIAS DO PROJETO (versao 2)
+# ==================================
+# Instalar:  python run.py setup      (cria rasa-env com Python 3.10 e instala isto)
+#
+# IMPORTANTE: Rasa Open Source 3.6.21 e a ULTIMA versao aberta do Rasa e so
+# instala em Python 3.8, 3.9 ou 3.10 (metadado do pacote: Requires-Python >=3.8,<3.11).
+# Essas tres versoes do Python ja sairam de suporte. Para aula e estudo, tudo bem;
+# para producao, nao. Este ponto faz parte do conteudo da Aula 6.
+
+# Chatbot
+rasa==3.6.21
+rasa-sdk==3.6.2
+
+# Interface web (so Flask; as chamadas HTTP usam a biblioteca padrao)
+Flask>=2.3,<4
+
+# Chamada a API de clima (opcional) nas actions
+requests>=2.28
+
+# Testes
+pytest>=7.4,<9

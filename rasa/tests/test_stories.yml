@@ -1,0 +1,79 @@
+# TESTES DE CONVERSA (rasa test core)
+# ===================================
+# ATENCAO, ponto de aula: este teste confere se, DADO o intent escrito aqui,
+# o Core escolhe a acao certa. Ele NAO confere se o NLU classifica a frase
+# naquele intent. Para o NLU existe tests/nlu_inedito.yml (rasa test nlu).
+# Na v1, "oi" estava rotulado como greet_morning e o teste passava mesmo assim.
+
+version: "3.1"
+
+stories:
+  - story: test_registro_simples_agua
+    steps:
+      - user: |
+          bom dia
+        intent: greet_morning
+      - action: action_greeting_contextual
+      - user: |
+          bebi [água](tipo_atividade)
+        intent: registrar_atividade_rapido
+      - action: action_registrar_atividade
+
+  - story: test_consulta_progresso
+    steps:
+      - user: |
+          como estou hoje?
+        intent: ask_progresso_hoje
+      - action: action_mostrar_progresso_hoje
+
+  - story: test_fluxo_completo
+    steps:
+      - user: |
+          oi
+        intent: greet
+      - action: utter_greet
+      - user: |
+          [corri](tipo_atividade)
+        intent: registrar_atividade_rapido
+      - action: action_registrar_atividade
+      - user: |
+          o que fiz hoje?
+        intent: ask_progresso_hoje
+      - action: action_mostrar_progresso_hoje
+      - user: |
+          tchau
+        intent: goodbye
+      - action: utter_goodbye
+
+  - story: test_agendar_e_consultar
+    steps:
+      - user: |
+          agendar [yoga](tipo_atividade) amanhã às 7h
+        intent: agendar_atividade
+      - action: action_agendar_atividade
+      - user: |
+          minha agenda
+        intent: ask_agenda
+      - action: action_mostrar_agenda
+
+  - story: test_formulario_cancelado
+    steps:
+      - user: |
+          quero registrar uma atividade
+        intent: registrar_atividade_detalhado
+      - action: atividade_detalhada_form
+      - active_loop: atividade_detalhada_form
+      - user: |
+          cancelar
+        intent: stop
+      - action: action_deactivate_loop
+      - active_loop: null
+      - action: action_limpar_slots_atividade
+      - action: utter_stop
+
+  - story: test_fora_de_escopo
+    steps:
+      - user: |
+          conta uma piada
+        intent: out_of_scope
+      - action: utter_out_of_scope

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block titulo %}Saúde do sistema{% endblock %}
+{% block conteudo %}
+<section class="painel largo">
+  <h1>Saúde do sistema <small>o que está no ar e como está se comportando</small></h1>
+  <div class="cartoes" id="saude-servicos"></div>
+  <h2>Uso desde o último reinício do banco</h2>
+  <div class="cartoes" id="saude-uso"></div>
+  <p class="dica">JSON completo em <a href="/api/saude">/api/saude</a>. Atualiza a cada 5 segundos.</p>
+</section>
+{% endblock %}

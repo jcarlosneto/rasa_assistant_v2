@@ -1,0 +1,135 @@
+# RULES - comportamento fixo: "se acontecer X, faca SEMPRE Y"
+# ===========================================================
+# Use regra para o que nao pode variar (saudacao, cancelamento, fallback).
+# Use stories (stories.yml) para ensinar conversas mais longas.
+
+version: "3.1"
+
+rules:
+  # ---------------- saudacoes e despedidas ----------------
+  - rule: Responder saudação simples
+    steps:
+      - intent: greet
+      - action: utter_greet
+
+  - rule: Responder saudação matinal
+    steps:
+      - intent: greet_morning
+      - action: action_greeting_contextual
+
+  - rule: Responder saudação tarde
+    steps:
+      - intent: greet_afternoon
+      - action: action_greeting_contextual
+
+  - rule: Responder saudação noite
+    steps:
+      - intent: greet_evening
+      - action: action_greeting_contextual
+
+  - rule: Responder despedida
+    steps:
+      - intent: goodbye
+      - action: utter_goodbye
+
+  # ---------------- conversa geral ----------------
+  - rule: Responder parar/cancelar fora de formulário
+    steps:
+      - intent: stop
+      - action: utter_stop
+
+  - rule: Responder sobre identidade
+    steps:
+      - intent: bot_challenge
+      - action: utter_iamabot
+
+  - rule: Fornecer ajuda
+    steps:
+      - intent: ask_ajuda
+      - action: utter_ajuda
+
+  - rule: Dar mensagem motivacional
+    steps:
+      - intent: ask_motivacao
+      - action: utter_motivacao
+
+  - rule: Responder a um "não" solto
+    steps:
+      - intent: confirmar_nao
+      - action: utter_tudo_bem
+
+  - rule: Responder out of scope educadamente
+    steps:
+      - intent: out_of_scope
+      - action: utter_out_of_scope
+
+  # ---------------- progresso e agenda ----------------
+  - rule: Mostrar progresso de hoje
+    steps:
+      - intent: ask_progresso_hoje
+      - action: action_mostrar_progresso_hoje
+
+  - rule: Mostrar progresso da semana
+    steps:
+      - intent: ask_progresso_semana
+      - action: action_mostrar_progresso_semana
+
+  - rule: Agendar atividade
+    steps:
+      - intent: agendar_atividade
+      - action: action_agendar_atividade
+
+  - rule: Mostrar agenda
+    steps:
+      - intent: ask_agenda
+      - action: action_mostrar_agenda
+
+  # ---------------- registro ----------------
+  - rule: Registrar atividade rápida
+    steps:
+      - intent: registrar_atividade_rapido
+      - action: action_registrar_atividade
+
+  - rule: Ativar form de atividade detalhada
+    steps:
+      - intent: registrar_atividade_detalhado
+      - action: atividade_detalhada_form
+      - active_loop: atividade_detalhada_form
+
+  - rule: Submit form de atividade
+    condition:
+      - active_loop: atividade_detalhada_form
+    steps:
+      - action: atividade_detalhada_form
+      - active_loop: null
+      - slot_was_set:
+          - requested_slot: null
+      - action: action_submit_atividade_form
+
+  # Cancelamento DENTRO do formulario.
+  # Como funciona: com um formulario ativo, o Rasa roda o formulario primeiro.
+  # Ele so "da a vez" para uma regra quando NAO consegue preencher o campo da vez.
+  # Por isso, no domain.yml, o texto com intent `stop` nao preenche campo algum.
+  # `action_deactivate_loop` e a acao padrao do Rasa que encerra o formulario.
+  - rule: Cancelar formulário ativo
+    condition:
+      - active_loop: atividade_detalhada_form
+    steps:
+      - intent: stop
+      - action: action_deactivate_loop
+      - active_loop: null
+      - action: action_limpar_slots_atividade
+      - action: utter_stop
+
+  # ---------------- fallback ----------------
+  - rule: Fallback quando não entende
+    steps:
+      - intent: nlu_fallback
+      - action: action_default_fallback
+
+  # Herdada da v1: se o fallback acontecer duas vezes seguidas, pede para reformular.
+  - rule: Prevenir loop infinito de fallback
+    steps:
+      - action: action_default_fallback
+      - action: action_default_fallback
+      - action: utter_ask_rephrase

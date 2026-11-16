@@ -1,0 +1,174 @@
+# DOMAIN - o "universo" do assistente
+# ====================================
+# Tudo o que o bot pode reconhecer, lembrar, dizer e fazer esta declarado aqui.
+# Se um nome nao esta neste arquivo, o Rasa nao o conhece.
+
+version: "3.1"
+
+# ------------------------------------------------------------------
+# INTENTS - o que o usuario pode QUERER
+# ------------------------------------------------------------------
+intents:
+  - greet
+  - greet_morning
+  - greet_afternoon
+  - greet_evening
+  - goodbye
+  - stop
+  - confirmar_sim
+  - confirmar_nao
+  - registrar_atividade_rapido
+  - registrar_atividade_detalhado
+  - agendar_atividade          # novo na v2: "agendar corrida amanha as 7h"
+  - ask_agenda                 # novo na v2: "o que tenho agendado?"
+  - ask_progresso_hoje
+  - ask_progresso_semana
+  - ask_motivacao
+  - bot_challenge
+  - ask_ajuda
+  - out_of_scope
+  - nlu_fallback               # criada pelo FallbackClassifier quando a confianca e baixa
+
+# ------------------------------------------------------------------
+# ENTITIES - os DETALHES extraidos da frase
+# ------------------------------------------------------------------
+entities:
+  - tipo_atividade    # "água", "corrida", "meditei"
+  - duracao           # "30"
+  - intensidade       # "leve", "moderada", "intenso"
+
+# ------------------------------------------------------------------
+# SLOTS - a memoria de curto prazo da conversa
+# ------------------------------------------------------------------
+# Os tres slots abaixo alimentam o formulario. Fora do formulario, as actions
+# leem as entidades direto da mensagem e limpam os slots ao terminar.
+slots:
+  tipo_atividade:
+    type: text
+    influence_conversation: false
+    mappings:
+      # Preenche com a entidade, EXCETO na frase que abre o formulario:
+      # em "quero registrar exercicio", "exercicio" nao e a resposta.
+      - type: from_entity
+        entity: tipo_atividade
+        not_intent: registrar_atividade_detalhado
+      # Dentro do formulario, quando esta e a pergunta da vez, vale o texto todo
+      # (assim "pilates", que o modelo nunca viu, tambem e aceito).
+      - type: from_text
+        not_intent: stop          # "cancelar" nao e resposta: deixa a regra de cancelamento agir
+        conditions:
+          - active_loop: atividade_detalhada_form
+            requested_slot: tipo_atividade
+
+  duracao:
+    type: any          # pode chegar "45", "45 minutos" ou "1 hora"; a validacao converte
+    mappings:
+      - type: from_entity
+        entity: duracao
+      - type: from_text
+        not_intent: stop          # "cancelar" nao e resposta: deixa a regra de cancelamento agir
+        conditions:
+          - active_loop: atividade_detalhada_form
+            requested_slot: duracao
+
+  intensidade:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: intensidade
+      - type: from_text
+        not_intent: stop          # "cancelar" nao e resposta: deixa a regra de cancelamento agir
+        conditions:
+          - active_loop: atividade_detalhada_form
+            requested_slot: intensidade
+
+# ------------------------------------------------------------------
+# FORMS - coleta guiada de varios slots
+# ------------------------------------------------------------------
+forms:
+  atividade_detalhada_form:
+    required_slots:
+      - tipo_atividade
+      - duracao
+      - intensidade
+
+# ------------------------------------------------------------------
+# RESPONSES - respostas prontas (sem codigo)
+# ------------------------------------------------------------------
+responses:
+  utter_greet:
+    - text: "Olá! 👋 Como posso ajudar você hoje?"
+    - text: "Oi! 😊 Que bom te ver! Como posso ajudar?"
+    - text: "E aí! 🤗 Pronto para registrar suas atividades?"
+
+  utter_goodbye:
+    - text: "Até logo! Continue firme nas suas atividades! 💪"
+    - text: "Tchau! Volte sempre para registrar suas conquistas! 🌟"
+    - text: "Até mais! Lembre-se: constância é a chave! 🔥"
+
+  utter_stop:
+    - text: "Ok, cancelado. Nada foi registrado. Se precisar, é só chamar! 👋"
+
+  utter_iamabot:
+    - text: "Sou um assistente virtual (um programa, não uma pessoa) que ajuda a registrar e agendar atividades. 🤖"
+
+  utter_ajuda:
+    - text: |
+        📚 O que eu sei fazer:
+        ✅ Registrar: "bebi água", "corri 30 minutos intenso"
+        📝 Registrar com perguntas: "quero registrar uma atividade"
+        📅 Agendar: "agendar yoga amanhã às 7h"
+        🗓️ Ver a agenda: "o que tenho agendado?"
+        📊 Ver o progresso: "como estou hoje?", "meu progresso semanal"
+        💪 Motivação: "me motive"
+
+  utter_out_of_scope:
+    - text: "Isso está fora da minha área. 😅 Eu cuido de atividades: registrar, agendar e mostrar o progresso. Digite 'ajuda' para ver exemplos."
+
+  utter_default:
+    - text: "Hmm, não entendi bem... 🤔 Pode reformular? Ou digite 'ajuda'."
+
+  utter_ask_rephrase:
+    - text: "Ainda não consegui entender. 🤔 Tente outras palavras ou digite 'ajuda'."
+
+  utter_incentivo_registrar:
+    - text: "Ótimo! Me conta o que você fez, por exemplo: 'caminhei 20 minutos'."
+
+  utter_tudo_bem:
+    - text: "Tudo bem! Quando quiser, estou por aqui. 🙂"
+
+  # Perguntas do formulario: o Rasa procura utter_ask_<nome_do_slot>
+  utter_ask_tipo_atividade:
+    - text: "Que tipo de atividade você fez? 🏃"
+  utter_ask_duracao:
+    - text: "Por quantos minutos? ⏱️"
+  utter_ask_intensidade:
+    - text: "Qual foi a intensidade? (leve / moderada / intensa) 💪"
+
+  utter_motivacao:
+    - text: "🔥 Cada pequeno passo conta!"
+    - text: "💪 Grandes conquistas vêm de pequenas atividades diárias."
+    - text: "🌟 Progresso, não perfeição. Você está no caminho."
+    - text: "🚀 Cada dia é uma nova chance. Bora lá!"
+
+# ------------------------------------------------------------------
+# ACTIONS - codigo Python em actions/actions.py
+# ------------------------------------------------------------------
+# Obs.: `action_deactivate_loop` e uma acao PADRAO do Rasa e por isso nao
+# aparece aqui. Na v1 ela era sobrescrita por engano e o cancelamento falhava.
+actions:
+  - action_greeting_contextual
+  - action_registrar_atividade
+  - action_mostrar_progresso_hoje
+  - action_mostrar_progresso_semana
+  - action_default_fallback
+  - validate_atividade_detalhada_form
+  - action_submit_atividade_form
+  - action_limpar_slots_atividade
+  - action_agendar_atividade
+  - action_mostrar_agenda
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: false   # v1: true. Slots de um registro nao devem vazar para a sessao seguinte

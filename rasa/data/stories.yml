@@ -1,0 +1,150 @@
+# STORIES - conversas de exemplo que ensinam o Core (TEDPolicy)
+# =============================================================
+# Cada story e uma conversa possivel: intent do usuario -> acao do bot.
+# O modelo aprende o PADRAO e generaliza para conversas parecidas.
+
+version: "3.1"
+
+stories:
+  - story: registro_atividade_simples_agua
+    steps:
+      - intent: greet_morning
+      - action: action_greeting_contextual
+      - intent: registrar_atividade_rapido
+        entities:
+          - tipo_atividade: "água"
+      - action: action_registrar_atividade
+
+  - story: registro_atividade_simples_corrida
+    steps:
+      - intent: greet_morning
+      - action: action_greeting_contextual
+      - intent: registrar_atividade_rapido
+        entities:
+          - tipo_atividade: "corrida"
+      - action: action_registrar_atividade
+
+  - story: registro_atividade_simples_meditacao
+    steps:
+      - intent: greet_afternoon
+      - action: action_greeting_contextual
+      - intent: registrar_atividade_rapido
+        entities:
+          - tipo_atividade: "meditação"
+      - action: action_registrar_atividade
+
+  - story: fluxo_completo_positivo
+    steps:
+      - intent: greet_morning
+      - action: action_greeting_contextual
+      - intent: registrar_atividade_rapido
+        entities:
+          - tipo_atividade: "corrida"
+      - action: action_registrar_atividade
+      - intent: ask_progresso_hoje
+      - action: action_mostrar_progresso_hoje
+      - intent: ask_motivacao
+      - action: utter_motivacao
+      - intent: goodbye
+      - action: utter_goodbye
+
+  - story: registro_detalhado_completo
+    steps:
+      - intent: registrar_atividade_detalhado
+      - action: atividade_detalhada_form
+      - active_loop: atividade_detalhada_form
+      - active_loop: null
+      - action: action_submit_atividade_form
+
+  - story: usuario_precisa_ajuda
+    steps:
+      - intent: greet_morning
+      - action: action_greeting_contextual
+      - intent: ask_ajuda
+      - action: utter_ajuda
+      - intent: registrar_atividade_rapido
+        entities:
+          - tipo_atividade: "água"
+      - action: action_registrar_atividade
+
+  - story: out_of_scope_recovery
+    steps:
+      - intent: out_of_scope
+      - action: utter_out_of_scope
+      - intent: ask_ajuda
+      - action: utter_ajuda
+      - intent: registrar_atividade_rapido
+        entities:
+          - tipo_atividade: "meditação"
+      - action: action_registrar_atividade
+
+  - story: multiplos_registros
+    steps:
+      - intent: greet_morning
+      - action: action_greeting_contextual
+      - intent: registrar_atividade_rapido
+        entities:
+          - tipo_atividade: "água"
+      - action: action_registrar_atividade
+      - intent: registrar_atividade_rapido
+        entities:
+          - tipo_atividade: "caminhada"
+      - action: action_registrar_atividade
+      - intent: ask_progresso_hoje
+      - action: action_mostrar_progresso_hoje
+
+  - story: consulta_sem_dados
+    steps:
+      - intent: greet_morning
+      - action: action_greeting_contextual
+      - intent: ask_progresso_hoje
+      - action: action_mostrar_progresso_hoje
+      - intent: confirmar_sim
+      - action: utter_incentivo_registrar
+      - intent: registrar_atividade_rapido
+        entities:
+          - tipo_atividade: "yoga"
+      - action: action_registrar_atividade
+
+  - story: motivacao_leva_acao
+    steps:
+      - intent: greet_evening
+      - action: action_greeting_contextual
+      - intent: ask_motivacao
+      - action: utter_motivacao
+      - intent: registrar_atividade_rapido
+        entities:
+          - tipo_atividade: "alongamento"
+      - action: action_registrar_atividade
+      - intent: goodbye
+      - action: utter_goodbye
+
+  # ---------------- agenda (novo na v2) ----------------
+  - story: agenda_e_baixa
+    steps:
+      - intent: agendar_atividade
+        entities:
+          - tipo_atividade: "corrida"
+      - action: action_agendar_atividade
+      - intent: ask_agenda
+      - action: action_mostrar_agenda
+      - intent: registrar_atividade_rapido
+        entities:
+          - tipo_atividade: "corrida"
+      - action: action_registrar_atividade
+
+  - story: interacao_complexa
+    steps:
+      - intent: greet_morning
+      - action: action_greeting_contextual
+      - intent: ask_progresso_semana
+      - action: action_mostrar_progresso_semana
+      - intent: registrar_atividade_detalhado
+      - action: atividade_detalhada_form
+      - active_loop: atividade_detalhada_form
+      - active_loop: null
+      - action: action_submit_atividade_form
+      - intent: ask_agenda
+      - action: action_mostrar_agenda
+      - intent: goodbye
+      - action: utter_goodbye

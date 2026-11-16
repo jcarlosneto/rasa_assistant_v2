@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block titulo %}Duelo 1.0 × 2.0{% endblock %}
+{% block conteudo %}
+<section class="painel largo">
+  <h1>Duelo 1.0 × 2.0 <small>a mesma frase, duas formas de entender</small></h1>
+  {% if cfg.configurado %}
+    <p class="aviso {% if cfg.externo %}aviso-externo{% endif %}">
+      {% if cfg.externo %}⚠ A frase digitada aqui é <b>enviada ao provedor externo</b> “{{ cfg.provedor }}” (modelo <code>{{ cfg.modelo }}</code>). Não escreva dados pessoais.
+      {% else %}LLM local em <code>{{ cfg.base_url }}</code> (modelo <code>{{ cfg.modelo }}</code>): a frase não sai desta máquina.{% endif %}
+    </p>
+  {% else %}
+    <p class="aviso">O lado do LLM está <b>desligado</b>. Para ligar, preencha <code>LLM_PROVIDER</code>, <code>LLM_API_KEY</code> e <code>LLM_MODEL</code> no arquivo <code>.env</code> e reinicie a interface. O lado do Rasa funciona normalmente.</p>
+  {% endif %}
+  <form id="form-duelo" class="entrada" autocomplete="off">
+    <label class="so-leitor" for="campo-duelo">Frase do duelo</label>
+    <input id="campo-duelo" type="text" maxlength="500" placeholder="Ex.: tomei um café">
+    <button class="botao primario" type="submit">Duelar</button>
+  </form>
+  <div class="sugestoes" id="sugestoes-duelo"></div>
+  <div class="duelo-grade">
+    <article class="lado lado-rasa">
+      <h2>ChatBot 1.0 <small>Rasa clássico · classificador treinado com exemplos</small></h2>
+      <div id="duelo-rasa" class="corpo"><p class="dica">Aguardando a frase.</p></div>
+    </article>
+    <article class="lado lado-llm">
+      <h2>Agente 2.0 <small>LLM · recebe só uma instrução em texto, sem treino</small></h2>
+      <div id="duelo-llm" class="corpo"><p class="dica">Aguardando a frase.</p></div>
+    </article>
+  </div>
+  <div class="duelo-rodape">
+    <button id="duelo-salvar" class="botao" type="button" hidden>Salvar este duelo para uso offline</button>
+    <span id="duelo-status" class="dica"></span>
+  </div>
+  <h2>Duelos gravados <small>resultados reais salvos nesta instalação</small></h2>
+  <div id="duelos-gravados" class="fichas"></div>
+  <details class="dica"><summary>O que observar</summary>
+    <ul>
+      <li>O classificador <b>sempre</b> escolhe um dos intents que conhece — mesmo para “tomei um café”.</li>
+      <li>O LLM entende variações sem treino, mas custa por chamada, demora mais e pode responder diferente a cada vez.</li>
+      <li>Em nenhum dos dois lados este duelo grava no banco: é só interpretação.</li>
+    </ul>
+  </details>
+</section>
+{% endblock %}

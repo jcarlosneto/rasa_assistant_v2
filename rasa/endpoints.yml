@@ -1,0 +1,62 @@
+# 🎓 ENDPOINTS - CONFIGURAÇÃO DE SERVIÇOS
+# =========================================
+# Define onde o Rasa deve buscar services externos.
+#
+# 📚 PRINCIPAIS ENDPOINTS:
+# - action_endpoint: Servidor de custom actions (Python)
+# - tracker_store: Onde salvar conversas (opcional)
+# - event_broker: Para enviar eventos (opcional)
+
+# ⚡ ACTION ENDPOINT
+# ------------------
+# Onde rodam as custom actions (actions/actions.py)
+action_endpoint:
+  url: "http://localhost:5055/webhook"
+  # 🎓 IMPORTANTE: Action server deve estar rodando nessa porta!
+  # Comando: rasa run actions
+
+# 💾 TRACKER STORE (Opcional - Comentado)
+# ----------------------------------------
+# Salva histórico de conversas em banco de dados
+# Por padrão usa memória (perde ao reiniciar)
+
+# tracker_store:
+#   type: sql
+#   dialect: "sqlite"  # ou "postgresql", "mysql"
+#   db: "database/conversations.db"
+#   # 🎓 Para produção, use PostgreSQL!
+
+# 📡 EVENT BROKER (Opcional - Comentado)
+# ---------------------------------------
+# Envia eventos para sistemas externos (analytics, etc)
+
+# event_broker:
+#   type: pika  # RabbitMQ
+#   url: localhost
+#   username: guest
+#   password: guest
+#   queue: rasa_events
+
+# 🎓 NOTA DIDÁTICA:
+# 
+# ARQUITETURA DO RASA:
+# 
+# ┌──────────────┐      ┌─────────────┐      ┌──────────────────┐
+# │   Usuário    │ ───> │ Rasa Server │ ───> │ Action Server    │
+# │  (mensagem)  │      │  (port 5005)│      │  (port 5055)     │
+# └──────────────┘      └─────────────┘      └──────────────────┘
+#                             │                       │
+#                             │                       │
+#                             v                       v
+#                       ┌──────────┐          ┌──────────────┐
+#                       │  Models  │          │  Database    │
+#                       │  (ML)    │          │  (SQLite)    │
+#                       └──────────┘          └──────────────┘
+#
+# FLUXO:
+# 1. Usuário envia mensagem para Rasa Server (5005)
+# 2. Rasa processa com modelos de ML
+# 3. Se precisa custom action, chama Action Server (5055)
+# 4. Action Server executa código Python
+# 5. Action Server retorna resposta
+# 6. Rasa envia resposta final ao usuário

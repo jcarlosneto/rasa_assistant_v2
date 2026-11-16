@@ -1,0 +1,16 @@
+flowchart TD
+    M["Mensagem do usuário"] --> N["NLU: intenção e entidades"]
+    N --> Q{"Formulário ativo?"}
+    Q -->|"sim"| V{"O slot aceita a entrada?"}
+    V -->|"sim"| P["Valida e pede o próximo campo"]
+    V -->|"não: intenção stop"| X["Regra de cancelamento<br/>desativa o formulário e limpa os slots"]
+    Q -->|"não"| R{"Alguma regra se aplica?"}
+    R -->|"sim"| A["Ação da regra"]
+    R -->|"não"| T["Memoization ou TED escolhem"]
+    P --> F{"Faltam campos?"}
+    F -->|"sim"| P
+    F -->|"não"| S["Grava a atividade"]
+    A --> O["Resposta ao usuário"]
+    T --> O
+    S --> O
+    X --> O

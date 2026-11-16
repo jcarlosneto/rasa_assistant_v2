@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block titulo %}Assistente de Atividades{% endblock %} · Rasa na prática</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+</head>
+<body data-pagina="{{ pagina }}" data-modo="{{ modo|default('') }}">
+<header class="topo">
+  <div class="marca"><span class="marca-ponto"></span>Assistente de Atividades <small>Rasa Open Source · v2</small></div>
+  <nav aria-label="Telas">
+    <a href="/" {% if pagina == 'chat' %}aria-current="page"{% endif %}>Chat + Raio-X</a>
+    <a href="/mural" {% if pagina == 'mural' %}aria-current="page"{% endif %}>Quebre o bot</a>
+    <a href="/duelo" {% if pagina == 'duelo' %}aria-current="page"{% endif %}>Duelo 1.0 × 2.0</a>
+    <a href="/dashboard" {% if pagina == 'dashboard' %}aria-current="page"{% endif %}>Dashboard</a>
+    <a href="/replay" {% if pagina == 'replay' %}aria-current="page"{% endif %}>Replay</a>
+    <a href="/saude" {% if pagina == 'saude' %}aria-current="page"{% endif %}>Saúde</a>
+  </nav>
+  <button id="apelido-botao" class="apelido" type="button" title="Trocar apelido">apelido: <b id="apelido-atual">—</b></button>
+</header>
+<main>{% block conteudo %}{% endblock %}</main>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

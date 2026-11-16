@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block titulo %}{% if modo == 'replay' %}Replay{% else %}Chat + Raio-X{% endif %}{% endblock %}
+{% block conteudo %}
+{% if modo == 'replay' %}
+<div class="faixa-replay" id="faixa-replay" role="status">REPLAY · conversa gravada — <span id="replay-origem">carregando…</span></div>
+{% endif %}
+<div class="duas-colunas">
+  <section class="painel chat" aria-label="Conversa">
+    <h1>Conversa</h1>
+    <div id="mensagens" class="mensagens" aria-live="polite"></div>
+    {% if modo == 'replay' %}
+    <div class="entrada">
+      <button id="replay-proxima" class="botao primario" type="button">▶ Próxima fala</button>
+      <button id="replay-reiniciar" class="botao" type="button">Recomeçar</button>
+      <span id="replay-contador" class="dica"></span>
+    </div>
+    {% else %}
+    <form id="form-chat" class="entrada" autocomplete="off">
+      <label class="so-leitor" for="campo">Sua mensagem</label>
+      <input id="campo" type="text" maxlength="500" placeholder="Escreva como falaria: bebi água · corri 30 minutos · agendar yoga amanhã às 7h">
+      <button class="botao primario" type="submit">Enviar</button>
+    </form>
+    <div class="sugestoes" id="sugestoes" aria-label="Sugestões de frases"></div>
+    {% endif %}
+  </section>
+
+  <section class="painel raiox" aria-label="Raio-X da última mensagem">
+    <div class="raiox-topo">
+      <h1>Raio-X <small>o que aconteceu dentro do Rasa</small></h1>
+      <label class="chave"><input type="checkbox" id="passo-a-passo"> passo a passo</label>
+      <button id="proxima-etapa" class="botao" type="button" hidden>Próxima etapa ␣</button>
+    </div>
+    <p class="dica" id="raiox-vazio">Envie uma mensagem. Cada etapa abaixo acende na ordem em que o Rasa a executa.</p>
+    <ol class="estacoes" id="estacoes" hidden>
+      <li class="estacao e-msg" data-etapa="1"><h2><span>1</span> Mensagem <em>o texto cru</em></h2><div class="corpo" id="x-mensagem"></div></li>
+      <li class="estacao e-nlu" data-etapa="2"><h2><span>2</span> Tokens <em>NLU · WhitespaceTokenizer</em></h2><div class="corpo fichas" id="x-tokens"></div></li>
+      <li class="estacao e-nlu" data-etapa="3"><h2><span>3</span> Intenção <em>NLU · DIETClassifier</em></h2><div class="corpo" id="x-intent"></div></li>
+      <li class="estacao e-nlu" data-etapa="4"><h2><span>4</span> Entidades <em>NLU · DIET + sinônimos</em></h2><div class="corpo" id="x-entidades"></div></li>
+      <li class="estacao e-core" data-etapa="5"><h2><span>5</span> Decisão <em>Core · políticas</em></h2><div class="corpo" id="x-decisao"></div></li>
+      <li class="estacao e-banco" data-etapa="6"><h2><span>6</span> Efeito <em>Action Server · banco de dados</em></h2><div class="corpo" id="x-banco"></div></li>
+    </ol>
+  </section>
+</div>
+{% endblock %}

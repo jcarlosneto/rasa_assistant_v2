@@ -1,0 +1,35 @@
+erDiagram
+    ATIVIDADES {
+        int id PK
+        string usuario
+        string tipo
+        float duracao
+        string intensidade
+        string data
+        string hora
+        datetime timestamp
+    }
+    AGENDA {
+        int id PK
+        string usuario
+        string tipo
+        string data
+        string hora
+        string criado_em
+        string concluida_em
+    }
+    INTERACOES {
+        int id PK
+        string momento
+        string usuario
+        string texto
+        string intent
+        float confianca
+        string entidades
+        string acoes
+        string resposta
+        int latencia_ms
+        string motivo_auto
+        int quebra_reportada
+        string comentario
+    }

@@ -1,0 +1,614 @@
+# 🎓 NLU - NATURAL LANGUAGE UNDERSTANDING
+# ========================================
+# Este arquivo contém INTENTS e ENTITIES que o bot pode reconhecer.
+#
+# 📚 CONCEITOS:
+# - Intent: O QUE o usuário quer fazer (intenção)
+# - Entity: DETALHES específicos extraídos da mensagem
+# - Examples: Exemplos de frases para treinar o modelo
+#
+# 🎯 Quanto mais exemplos variados, melhor o bot aprende!
+
+version: "3.1"
+
+nlu:
+  # ==========================================
+  # 👋 INTENTS DE SAUDAÇÃO
+  # ==========================================
+
+  - intent: greet
+    examples: |
+      - oi
+      - olá
+      - opa
+      - e aí
+      - fala
+      - oi tudo bem
+      - olá tudo bem?
+      - oi bot
+      - ei
+      - hey
+      - hello
+      - hi
+      - eae
+      - salve
+      - oi pessoal
+      - olá pessoal
+
+  - intent: greet_morning
+    examples: |
+      - bom dia
+      - oi, bom dia
+      - olá, bom dia
+      - bomdia
+      - opa, bom dia
+      - bom dia!
+      - bom dia, como vai?
+      - bom dia bot
+      - oi bom dia
+      - olá bom dia
+
+  - intent: greet_afternoon
+    examples: |
+      - boa tarde
+      - oi, boa tarde
+      - olá, boa tarde
+      - boatarde
+      - boa tarde!
+      - e aí, boa tarde
+      - fala, boa tarde
+
+  - intent: greet_evening
+    examples: |
+      - boa noite
+      - oi, boa noite
+      - olá, boa noite
+      - boanoite
+      - boa noite!
+      - e aí, boa noite
+      - oi boa noite
+
+  # ==========================================
+  # 👋 DESPEDIDAS E CONTROLE
+  # ==========================================
+
+  - intent: goodbye
+    examples: |
+      - tchau
+      - até logo
+      - até mais
+      - falou
+      - vlw
+      - até amanhã
+      - até breve
+      - até depois
+      - xau
+      - flw
+      - até
+      - tenho que ir
+      - vou nessa
+      - preciso ir
+      - abraço
+      - até mais tarde
+
+  - intent: stop
+    examples: |
+      - pare
+      - parar
+      - cancelar
+      - cancela
+      - sair
+      - stop
+      - para
+      - interromper
+      - não quero mais
+      - desistir
+      - deixa pra lá
+      - esquece
+
+  # ==========================================
+  # ✅ CONFIRMAÇÕES
+  # ==========================================
+
+  - intent: confirmar_sim
+    examples: |
+      - sim
+      - s
+      - claro
+      - com certeza
+      - isso mesmo
+      - correto
+      - exato
+      - pode ser
+      - ok
+      - beleza
+      - tá bom
+      - perfeito
+      - isso
+      - afirmativo
+      - positivo
+      - pode crer
+      - é isso aí
+
+  - intent: confirmar_nao
+    examples: |
+      - não
+      - n
+      - nunca
+      - de jeito nenhum
+      - negativo
+      - nem pensar
+      - não quero
+      - nada disso
+      - errado
+      - incorreto
+      - nope
+      - nop
+      - jamais
+
+  # ==========================================
+  # 🏃 REGISTRO RÁPIDO DE ATIVIDADES
+  # ==========================================
+  # 🎓 NOTA DIDÁTICA:
+  # [palavra](entity_name) marca entities inline
+  # Ex: "bebi [água](tipo_atividade)" ensina que "água" é um tipo_atividade
+
+  - intent: registrar_atividade_rapido
+    examples: |
+      - bebi [água](tipo_atividade)
+      - tomei [água](tipo_atividade)
+      - bebi um copo de [água](tipo_atividade)
+      - [água](tipo_atividade)
+      - hidratei
+      - me hidratei
+      - hidratação
+      - [corri](tipo_atividade)
+      - [corri](tipo_atividade) hoje
+      - [corri](tipo_atividade) [10](duracao) minutos
+      - [corri](tipo_atividade) [15](duracao) minutos
+      - [corri](tipo_atividade) [20](duracao) minutos
+      - [corri](tipo_atividade) [25](duracao) minutos
+      - [corri](tipo_atividade) [30](duracao) minutos
+      - [corri](tipo_atividade) [35](duracao) minutos
+      - [corri](tipo_atividade) [40](duracao) minutos
+      - [corri](tipo_atividade) [45](duracao) minutos
+      - [corri](tipo_atividade) [50](duracao) minutos
+      - [corri](tipo_atividade) [60](duracao) minutos
+      - [corri](tipo_atividade) [20](duracao) minutos [leve](intensidade)
+      - [corri](tipo_atividade) [30](duracao) minutos [moderada](intensidade)
+      - [corri](tipo_atividade) [45](duracao) minutos [intensa](intensidade)
+      - fiz [corrida](tipo_atividade)
+      - fiz [corrida](tipo_atividade) de [20](duracao) minutos
+      - fiz [corrida](tipo_atividade) [leve](intensidade) de [30](duracao) minutos
+      - saí para [correr](tipo_atividade)
+      - fui [correr](tipo_atividade)
+      - acabei de [correr](tipo_atividade) [25](duracao) minutos
+      - terminei de [correr](tipo_atividade) [20](duracao) minutos
+      - [corrida](tipo_atividade)
+      - [corrida](tipo_atividade) de [15](duracao) minutos
+      - [corrida](tipo_atividade) [20](duracao) minutos hoje
+      - [corrida](tipo_atividade) [25](duracao) minutos de manhã
+      - [caminhei](tipo_atividade)
+      - [caminhei](tipo_atividade) [15](duracao) minutos
+      - [caminhei](tipo_atividade) [30](duracao) minutos
+      - [caminhei](tipo_atividade) [40](duracao) minutos
+      - [caminhei](tipo_atividade) [60](duracao) minutos
+      - fiz [caminhada](tipo_atividade)
+      - fiz [caminhada](tipo_atividade) de [20](duracao) minutos
+      - saí para [caminhar](tipo_atividade)
+      - fui [caminhar](tipo_atividade)
+      - [caminhada](tipo_atividade)
+      - [andei](tipo_atividade) [30](duracao) minutos
+      - [meditei](tipo_atividade)
+      - [meditei](tipo_atividade) hoje
+      - [meditei](tipo_atividade) [5](duracao) minutos
+      - [meditei](tipo_atividade) [10](duracao) minutos
+      - [meditei](tipo_atividade) [15](duracao) minutos
+      - [meditei](tipo_atividade) [20](duracao) minutos
+      - fiz [meditação](tipo_atividade)
+      - fiz [meditação](tipo_atividade) de [10](duracao) minutos
+      - [meditação](tipo_atividade)
+      - [meditação](tipo_atividade) feita
+      - pratiquei [meditação](tipo_atividade)
+      - [malhei](tipo_atividade)
+      - [malhei](tipo_atividade) [30](duracao) minutos
+      - [malhei](tipo_atividade) [45](duracao) minutos
+      - [malhei](tipo_atividade) [60](duracao) minutos
+      - [malhei](tipo_atividade) [90](duracao) minutos
+      - [malhei](tipo_atividade) [pesado](intensidade) por [40](duracao) minutos
+      - fiz [musculação](tipo_atividade)
+      - fiz [musculação](tipo_atividade) de [45](duracao) minutos
+      - fiz [exercício](tipo_atividade)
+      - fiz [exercício](tipo_atividade) de [30](duracao) minutos
+      - [exercício](tipo_atividade) [intenso](intensidade) por [25](duracao) minutos
+      - [musculação](tipo_atividade)
+      - [exercício](tipo_atividade)
+      - exercitei
+      - exercitei hoje
+      - fui na academia
+      - academia
+      - treino
+      - fiz [yoga](tipo_atividade)
+      - fiz [yoga](tipo_atividade) por [30](duracao) minutos
+      - [yoga](tipo_atividade) [relaxante](intensidade) por [25](duracao) minutos
+      - pratiquei [yoga](tipo_atividade)
+      - [yoga](tipo_atividade)
+      - [nadei](tipo_atividade)
+      - [nadei](tipo_atividade) [30](duracao) minutos
+      - [nadei](tipo_atividade) [45](duracao) minutos
+      - [nadei](tipo_atividade) [60](duracao) minutos
+      - fiz [natação](tipo_atividade)
+      - fiz [natação](tipo_atividade) de [40](duracao) minutos
+      - fui [nadar](tipo_atividade)
+      - [natação](tipo_atividade)
+      - piscina
+      - [pedalei](tipo_atividade)
+      - [pedalei](tipo_atividade) [30](duracao) minutos
+      - [pedalei](tipo_atividade) [45](duracao) minutos
+      - [pedalei](tipo_atividade) [60](duracao) minutos
+      - andei de [bicicleta](tipo_atividade)
+      - andei de [bicicleta](tipo_atividade) por [40](duracao) minutos
+      - fiz [ciclismo](tipo_atividade)
+      - [ciclismo](tipo_atividade)
+      - [bicicleta](tipo_atividade)
+      - bike
+      - me [alonguei](tipo_atividade)
+      - me [alonguei](tipo_atividade) por [10](duracao) minutos
+      - fiz [alongamento](tipo_atividade)
+      - fiz [alongamento](tipo_atividade) de [15](duracao) minutos
+      - [alongamento](tipo_atividade)
+      - alongar
+      - [li](tipo_atividade)
+      - [li](tipo_atividade) por [30](duracao) minutos
+      - li um [livro](tipo_atividade)
+      - fiz [leitura](tipo_atividade)
+      - [leitura](tipo_atividade)
+      - ler
+      - completei uma [tarefa](tipo_atividade)
+      - terminei uma [tarefa](tipo_atividade)
+      - [tarefa](tipo_atividade) concluída
+      - corri 10 minutos
+      - corri 15 minutos
+      - corri 20 minutos
+      - corri 25 minutos
+      - corri 30 minutos
+      - corri 35 minutos
+      - corri 40 minutos
+      - corri 45 minutos
+      - corri 50 minutos
+      - corri 60 minutos
+      - caminhei 15 minutos
+      - caminhei 30 minutos
+      - caminhei 45 minutos
+      - nadei 30 minutos
+      - nadei 45 minutos
+      - malhei 45 minutos
+      - malhei 60 minutos
+      - meditei 5 minutos
+      - meditei 10 minutos
+      - meditei 15 minutos
+      - pedalei 30 minutos
+      - pedalei 60 minutos
+
+  # ==========================================
+  # 📝 REGISTRO DETALHADO (COM FORMULÁRIO)
+  # ==========================================
+
+  - intent: registrar_atividade_detalhado
+    examples: |
+      - quero registrar uma atividade
+      - registrar exercício
+      - adicionar atividade
+      - quero adicionar detalhes
+      - registrar com detalhes
+      - quero registrar
+      - adicionar atividade
+      - registrar atividade
+      - quero registrar uma atividade
+      - preciso registrar algo
+      - vou registrar uma atividade
+      - registro detalhado
+      - atividade detalhada
+      - formulário completo
+      - quero preencher formulário
+      - registro completo
+      - atividade com detalhes
+      - formulário de atividade
+      - registro com mais informações
+      - quero dar mais detalhes
+      - formulário detalhado
+      - registro avançado
+      - quero adicionar uma atividade
+      - adicionar com detalhes
+      - registro completo
+      - quero fazer um registro detalhado
+      - quero registrar atividade detalhada
+      - quero registrar uma atividade completa
+      - registro detalhado
+      - atividade detalhada
+      - formulário completo
+
+  # ==========================================
+  # 📅 AGENDAR ATIVIDADE (novo na v2)
+  # ==========================================
+  # 🎓 NOTA DIDÁTICA:
+  # Aqui o NLU só precisa descobrir a INTENÇÃO e o TIPO da atividade.
+  # Data e hora ("amanhã às 7h") NÃO são anotadas como entidade: quem lê isso
+  # é uma expressão regular em actions/catalogo.py. ML para entender,
+  # regra para o que é previsível.
+
+  - intent: agendar_atividade
+    examples: |
+      - agendar [corrida](tipo_atividade) amanhã às 7h
+      - agendar [yoga](tipo_atividade) para sexta às 18h
+      - marcar [natação](tipo_atividade) para amanhã
+      - marcar [caminhada](tipo_atividade) hoje às 19h
+      - quero agendar [musculação](tipo_atividade) para segunda às 6h30
+      - agenda [meditação](tipo_atividade) para hoje às 21h
+      - me lembra de [meditar](tipo_atividade) amanhã às 6h
+      - me lembre de [correr](tipo_atividade) sábado de manhã
+      - vou [correr](tipo_atividade) amanhã às 7h
+      - vou [nadar](tipo_atividade) na quinta às 8h
+      - amanhã vou [pedalar](tipo_atividade) às 6h
+      - quero marcar [yoga](tipo_atividade) depois de amanhã
+      - agendar [alongamento](tipo_atividade) para hoje à noite
+      - programar [corrida](tipo_atividade) para domingo às 7h
+      - planejo [caminhar](tipo_atividade) amanhã às 18h
+      - agendar [leitura](tipo_atividade) para hoje às 22h
+      - marcar [ciclismo](tipo_atividade) para sábado às 8h
+      - agendar uma [corrida](tipo_atividade) para terça às 7h
+      - preciso agendar [natação](tipo_atividade) na quarta às 19h
+      - agende [yoga](tipo_atividade) para amanhã às 7 da manhã
+      - reservar horário para [corrida](tipo_atividade) amanhã
+      - lembrete de [caminhada](tipo_atividade) amanhã às 17h
+      - marcar [exercício](tipo_atividade) para dia 20 às 18h
+      - vou fazer [yoga](tipo_atividade) amanhã cedo
+      - vou [meditar](tipo_atividade) hoje às 22h
+      - pretendo [correr](tipo_atividade) na sexta às 6h
+      - quero agendar uma atividade
+      - agendar atividade
+      - marcar um compromisso de treino para amanhã
+      - quero marcar uma atividade para depois
+
+  - intent: ask_agenda
+    examples: |
+      - o que tenho agendado?
+      - minha agenda
+      - ver agenda
+      - mostrar agenda
+      - quais são meus agendamentos?
+      - o que está marcado?
+      - o que tenho marcado para amanhã?
+      - próximas atividades agendadas
+      - meus lembretes
+      - tenho algo agendado?
+      - agenda da semana
+      - o que eu marquei?
+      - meus compromissos
+      - lista de agendamentos
+
+  # ==========================================
+  # 📊 CONSULTAS DE PROGRESSO
+  # ==========================================
+
+  - intent: ask_progresso_hoje
+    examples: |
+      - como estou hoje?
+      - meu progresso hoje
+      - o que fiz hoje?
+      - atividades de hoje
+      - mostrar hoje
+      - resumo de hoje
+      - progresso de hoje
+      - como foi meu dia?
+      - quanto fiz hoje?
+      - meu dia hoje
+      - estatísticas de hoje
+      - o que eu fiz hoje?
+      - minhas atividades hoje
+      - o que registrei hoje?
+      - qual meu progresso?
+      - quantas atividades fiz?
+      - meu progresso
+      - progresso
+      - estatísticas
+      - resumo
+      - atividades
+      - o que fiz?
+      - como estou?
+      - meu status hoje
+      - balanço do dia
+      - relatório de hoje
+      - check-in diário
+      - como ando hoje?
+      - situação de hoje
+
+  - intent: ask_progresso_semana
+    examples: |
+      - como estou essa semana?
+      - meu progresso semanal
+      - resumo da semana
+      - atividades da semana
+      - progresso semanal
+      - como foi minha semana?
+      - mostrar semana
+      - o que fiz essa semana?
+      - estatísticas semanais
+      - meu progresso na semana
+
+  # ==========================================
+  # 💪 MOTIVAÇÃO
+  # ==========================================
+
+  - intent: ask_motivacao
+    examples: |
+      - me motive
+      - preciso de motivação
+      - me anime
+      - diga algo motivador
+      - quero motivação
+      - estou desanimado
+      - preciso de incentivo
+      - me dê uma força
+      - palavras motivadoras
+      - inspira eu
+      - dá um gás aí
+
+  # ==========================================
+  # 🤖 IDENTIDADE DO BOT
+  # ==========================================
+
+  - intent: bot_challenge
+    examples: |
+      - você é um bot?
+      - é um robô?
+      - você é humano?
+      - quem é você?
+      - o que você é?
+      - você é real?
+      - você é uma IA?
+      - você é inteligência artificial?
+      - você é uma pessoa?
+      - qual seu nome?
+
+  # ==========================================
+  # ❓ AJUDA
+  # ==========================================
+
+  - intent: ask_ajuda
+    examples: |
+      - ajuda
+      - help
+      - me ajuda
+      - preciso de ajuda
+      - o que você faz?
+      - o que você pode fazer?
+      - como você funciona?
+      - o que posso fazer?
+      - quais comandos?
+      - não entendi
+      - como usar?
+      - me ensina
+
+  # ==========================================
+  # 🚫 FORA DE CONTEXTO (EDUCADO)
+  # ==========================================
+
+  - intent: out_of_scope
+    examples: |
+      - qual o sentido da vida?
+      - conta uma piada
+      - como está o tempo?
+      - quanto é 2 + 2?
+      - você gosta de pizza?
+      - quem ganhou o jogo?
+      - notícias de hoje
+      - como fazer bolo?
+      - preciso de um médico
+      - onde fica a padaria?
+      - qual é a previsão do tempo?
+      - me conte uma piada
+      - que horas são?
+      - onde posso comprar?
+      - como chegar lá?
+      - receita de comida
+      - filme bom para assistir
+      - música para ouvir
+
+  # 🎓 NOTA PARA PROFESSORES:
+  # - Adicionar mais exemplos melhora a precisão
+  # - Variações de escrita (com/sem acentos, typos) ajudam
+  # - Exemplos devem cobrir diferentes formas de dizer a mesma coisa
+
+  # ==========================================
+  # 🔤 REGEX PATTERNS (Padrões)
+  # ==========================================
+  # Regex patterns ajudam a reconhecer padrões específicos
+
+  - regex: duracao
+    examples: |
+      - \d+\s*(min|minutos?|horas?)
+      - \d+
+      - (vinte|trinta|quarenta|cinquenta|sessenta)
+
+  - regex: atividade_corrida
+    examples: |
+      - corr(i|er|ida|endo)
+      - runn?(ing)?
+
+  - regex: atividade_caminhada
+    examples: |
+      - caminh(ei|ar|ada|ando)
+      - and(ei|ar|ando)
+      - walk(ing)?
+
+  - regex: atividade_exercicio
+    examples: |
+      - malh(ei|ar|ando)
+      - exerc(ício|itei|itar)
+      - treino?
+      - academia
+
+  - regex: atividade_natacao
+    examples: |
+      - nad(ei|ar|ando)
+      - nata(ção|cao)
+      - piscina
+      - swim(ming)?
+
+  - regex: atividade_meditacao
+    examples: |
+      - medit(ei|ar|ação|acao)
+      - mindfulness
+
+  # ==========================================
+  # 🔄 SINÔNIMOS (Normalização)
+  # ==========================================
+  # Sinônimos ajudam o bot a entender variações da mesma coisa
+
+  - synonym: corrida
+    examples: |
+      - corri
+      - corrida
+      - correr
+      - running
+      - run
+
+  - synonym: água
+    examples: |
+      - agua
+      - h2o
+      - hidratação
+      - hidratar
+
+  - synonym: meditação
+    examples: |
+      - meditacao
+      - meditar
+      - mindfulness
+
+  - synonym: caminhada
+    examples: |
+      - caminhar
+      - andar
+      - walking
+
+  - synonym: natação
+    examples: |
+      - natacao
+      - nadar
+      - swimming
+      - piscina
+
+  - synonym: yoga
+    examples: |
+      - ioga
+      - yôga
+
+  - synonym: musculação
+    examples: |
+      - musculacao
+      - malhar
+      - academia
+      - treino
+      - gym

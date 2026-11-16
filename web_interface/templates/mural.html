@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block titulo %}Quebre o bot{% endblock %}
+{% block conteudo %}
+<section class="painel largo">
+  <h1>Quebre o bot <small>toda falha encontrada vira matéria-prima de treino</small></h1>
+  <p class="dica">Uma fala entra aqui quando o próprio sistema percebe um sinal de falha (fallback, atividade não identificada, baixa confiança) ou quando alguém clica em <b>“🔨 quebrou”</b> no chat.</p>
+  <div class="cartoes" id="mural-resumo"></div>
+  <div class="mural-grade">
+    <div>
+      <h2>Falhas encontradas</h2>
+      <div id="mural-lista" class="mural-lista"></div>
+    </div>
+    <aside>
+      <h2>Caçadores de falhas</h2>
+      <ol id="mural-ranking" class="ranking"></ol>
+      <h2>Do mural para o treino</h2>
+      <p class="dica">O ciclo de quem mantém um chatbot: falha → exemplo novo → retreino → teste.</p>
+      <a class="botao primario" href="/api/mural/nlu.yml" target="_blank" rel="noopener">Gerar candidatas para o nlu.yml</a>
+    </aside>
+  </div>
+</section>
+{% endblock %}

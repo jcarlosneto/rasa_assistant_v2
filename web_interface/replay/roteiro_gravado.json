@@ -1,0 +1,2063 @@
+{
+ "gravado_em": "15/11/2026 15:30",
+ "ambiente": "Linux x86_64, Python 3.10.20",
+ "modelo": "chatbot-assistant-v2.tar.gz",
+ "turnos": [
+  {
+   "id": 1,
+   "mensagem": "bom dia",
+   "momento": "15:30",
+   "motivo_auto": null,
+   "raiox": {
+    "acoes": [
+     {
+      "confianca": 1.0,
+      "nome": "action_greeting_contextual",
+      "politica": "RulePolicy"
+     },
+     {
+      "confianca": 1.0,
+      "nome": "action_listen",
+      "politica": "RulePolicy"
+     }
+    ],
+    "banco": {
+     "agenda": [],
+     "atividades": []
+    },
+    "entidades": [],
+    "formulario_ativo": null,
+    "intent": {
+     "confianca": 0.9823569059371948,
+     "nome": "greet_morning"
+    },
+    "latencia_ms": 721,
+    "ranking": [
+     {
+      "confianca": 0.9823569059371948,
+      "nome": "greet_morning"
+     },
+     {
+      "confianca": 0.0065076895989477634,
+      "nome": "bot_challenge"
+     },
+     {
+      "confianca": 0.004760035313665867,
+      "nome": "greet_afternoon"
+     },
+     {
+      "confianca": 0.0017146785976365209,
+      "nome": "ask_agenda"
+     },
+     {
+      "confianca": 0.0009486076305620372,
+      "nome": "greet"
+     }
+    ],
+    "respostas": [
+     "Boa tarde! 👋\nComo posso ajudar com suas atividades?"
+    ],
+    "slots_alterados": [],
+    "slots_finais": {
+     "duracao": null,
+     "intensidade": null,
+     "requested_slot": null,
+     "tipo_atividade": null
+    },
+    "texto": "bom dia",
+    "tokens": [
+     "bom",
+     "dia"
+    ]
+   },
+   "respostas": [
+    "Boa tarde! 👋\nComo posso ajudar com suas atividades?"
+   ],
+   "usuario": "demo153053",
+   "ato": "1 · Saudação contextual",
+   "nota": "A saudação segue o relógio da máquina, não o que foi digitado.",
+   "falha_proposital": false
+  },
+  {
+   "id": 2,
+   "mensagem": "bebi água",
+   "momento": "15:30",
+   "motivo_auto": null,
+   "raiox": {
+    "acoes": [
+     {
+      "confianca": 1.0,
+      "nome": "action_registrar_atividade",
+      "politica": "RulePolicy"
+     },
+     {
+      "confianca": 1.0,
+      "nome": "action_listen",
+      "politica": "RulePolicy"
+     }
+    ],
+    "banco": {
+     "agenda": [],
+     "atividades": [
+      {
+       "data": "2026-11-15",
+       "duracao": null,
+       "hora": "15:30",
+       "id": 1,
+       "intensidade": null,
+       "tipo": "água",
+       "usuario": "demo153053"
+      }
+     ]
+    },
+    "entidades": [
+     {
+      "confianca": 0.9996246099472046,
+      "entidade": "tipo_atividade",
+      "extrator": "DIETClassifier",
+      "fim": 9,
+      "inicio": 5,
+      "valor": "água"
+     }
+    ],
+    "formulario_ativo": null,
+    "intent": {
+     "confianca": 1.0,
+     "nome": "registrar_atividade_rapido"
+    },
+    "latencia_ms": 61,
+    "ranking": [
+     {
+      "confianca": 1.0,
+      "nome": "registrar_atividade_rapido"
+     },
+     {
+      "confianca": 5.7472275827308295e-09,
+      "nome": "greet_morning"
+     },
+     {
+      "confianca": 2.763036022201959e-09,
+      "nome": "greet_evening"
+     },
+     {
+      "confianca": 2.395988296655105e-09,
+      "nome": "greet_afternoon"
+     },
+     {
+      "confianca": 1.7845557254148048e-09,
+      "nome": "ask_progresso_semana"
+     }
+    ],
+    "respostas": [
+     "✅ Registrei: água.\n🔥 Total hoje: 1 atividade."
+    ],
+    "slots_alterados": [
+     {
+      "nome": "tipo_atividade",
+      "valor": "água"
+     },
+     {
+      "nome": "tipo_atividade",
+      "valor": null
+     },
+     {
+      "nome": "duracao",
+      "valor": null
+     },
+     {
+      "nome": "intensidade",
+      "valor": null
+     }
+    ],
+    "slots_finais": {
+     "duracao": null,
+     "intensidade": null,
+     "requested_slot": null,
+     "tipo_atividade": null
+    },
+    "texto": "bebi água",
+    "tokens": [
+     "bebi",
+     "água"
+    ]
+   },
+   "respostas": [
+    "✅ Registrei: água.\n🔥 Total hoje: 1 atividade."
+   ],
+   "usuario": "demo153053",
+   "ato": "2 · Registro rápido",
+   "nota": null,
+   "falha_proposital": false
+  },
+  {
+   "id": 3,
+   "mensagem": "corri 30 minutos intenso",
+   "momento": "15:30",
+   "motivo_auto": null,
+   "raiox": {
+    "acoes": [
+     {
+      "confianca": 1.0,
+      "nome": "action_registrar_atividade",
+      "politica": "RulePolicy"
+     },
+     {
+      "confianca": 1.0,
+      "nome": "action_listen",
+      "politica": "RulePolicy"
+     }
+    ],
+    "banco": {
+     "agenda": [],
+     "atividades": [
+      {
+       "data": "2026-11-15",
+       "duracao": 30.0,
+       "hora": "15:30",
+       "id": 2,
+       "intensidade": "intensa",
+       "tipo": "corrida",
+       "usuario": "demo153053"
+      }
+     ]
+    },
+    "entidades": [
+     {
+      "confianca": 0.7578914761543274,
+      "entidade": "tipo_atividade",
+      "extrator": "DIETClassifier",
+      "fim": 5,
+      "inicio": 0,
+      "valor": "corrida"
+     },
+     {
+      "confianca": 0.8212666511535645,
+      "entidade": "duracao",
+      "extrator": "DIETClassifier",
+      "fim": 8,
+      "inicio": 6,
+      "valor": "30"
+     },
+     {
+      "confianca": 0.9982579350471497,
+      "entidade": "intensidade",
+      "extrator": "DIETClassifier",
+      "fim": 24,
+      "inicio": 17,
+      "valor": "intenso"
+     }
+    ],
+    "formulario_ativo": null,
+    "intent": {
+     "confianca": 1.0,
+     "nome": "registrar_atividade_rapido"
+    },
+    "latencia_ms": 57,
+    "ranking": [
+     {
+      "confianca": 1.0,
+      "nome": "registrar_atividade_rapido"
+     },
+     {
+      "confianca": 3.911352575158844e-09,
+      "nome": "greet_morning"
+     },
+     {
+      "confianca": 2.1775601322104876e-09,
+      "nome": "greet_evening"
+     },
+     {
+      "confianca": 1.5452115142977618e-09,
+      "nome": "greet_afternoon"
+     },
+     {
+      "confianca": 1.418352768567388e-09,
+      "nome": "out_of_scope"
+     }
+    ],
+    "respostas": [
+     "✅ Registrei: corrida · 30 min · intensa.\n🔥 Total hoje: 2 atividades."
+    ],
+    "slots_alterados": [
+     {
+      "nome": "tipo_atividade",
+      "valor": "corrida"
+     },
+     {
+      "nome": "duracao",
+      "valor": "30"
+     },
+     {
+      "nome": "intensidade",
+      "valor": "intenso"
+     },
+     {
+      "nome": "tipo_atividade",
+      "valor": null
+     },
+     {
+      "nome": "duracao",
+      "valor": null
+     },
+     {
+      "nome": "intensidade",
+      "valor": null
+     }
+    ],
+    "slots_finais": {
+     "duracao": null,
+     "intensidade": null,
+     "requested_slot": null,
+     "tipo_atividade": null
+    },
+    "texto": "corri 30 minutos intenso",
+    "tokens": [
+     "corri",
+     "30",
+     "minutos",
+     "intenso"
+    ]
+   },
+   "respostas": [
+    "✅ Registrei: corrida · 30 min · intensa.\n🔥 Total hoje: 2 atividades."
+   ],
+   "usuario": "demo153053",
+   "ato": "2 · Registro rápido",
+   "nota": null,
+   "falha_proposital": false
+  },
+  {
+   "id": 4,
+   "mensagem": "meditei",
+   "momento": "15:30",
+   "motivo_auto": null,
+   "raiox": {
+    "acoes": [
+     {
+      "confianca": 1.0,
+      "nome": "action_registrar_atividade",
+      "politica": "RulePolicy"
+     },
+     {
+      "confianca": 1.0,
+      "nome": "action_listen",
+      "politica": "RulePolicy"
+     }
+    ],
+    "banco": {
+     "agenda": [],
+     "atividades": [
+      {
+       "data": "2026-11-15",
+       "duracao": null,
+       "hora": "15:30",
+       "id": 3,
+       "intensidade": null,
+       "tipo": "meditação",
+       "usuario": "demo153053"
+      }
+     ]
+    },
+    "entidades": [
+     {
+      "confianca": 0.9152441620826721,
+      "entidade": "tipo_atividade",
+      "extrator": "DIETClassifier",
+      "fim": 7,
+      "inicio": 0,
+      "valor": "meditei"
+     }
+    ],
+    "formulario_ativo": null,
+    "intent": {
+     "confianca": 1.0,
+     "nome": "registrar_atividade_rapido"
+    },
+    "latencia_ms": 54,
+    "ranking": [
+     {
+      "confianca": 1.0,
+      "nome": "registrar_atividade_rapido"
+     },
+     {
+      "confianca": 5.24161070103446e-09,
+      "nome": "greet_morning"
+     },
+     {
+      "confianca": 2.778594687669056e-09,
+      "nome": "greet_evening"
+     },
+     {
+      "confianca": 1.7236305716039624e-09,
+      "nome": "greet_afternoon"
+     },
+     {
+      "confianca": 1.4970449324636093e-09,
+      "nome": "out_of_scope"
+     }
+    ],
+    "respostas": [
+     "✅ Registrei: meditação.\n🔥 Total hoje: 3 atividades."
+    ],
+    "slots_alterados": [
+     {
+      "nome": "tipo_atividade",
+      "valor": "meditei"
+     },
+     {
+      "nome": "tipo_atividade",
+      "valor": null
+     },
+     {
+      "nome": "duracao",
+      "valor": null
+     },
+     {
+      "nome": "intensidade",
+      "valor": null
+     }
+    ],
+    "slots_finais": {
+     "duracao": null,
+     "intensidade": null,
+     "requested_slot": null,
+     "tipo_atividade": null
+    },
+    "texto": "meditei",
+    "tokens": [
+     "meditei"
+    ]
+   },
+   "respostas": [
+    "✅ Registrei: meditação.\n🔥 Total hoje: 3 atividades."
+   ],
+   "usuario": "demo153053",
+   "ato": "3 · Normalização por regra",
+   "nota": "O NLU entrega 'meditei'; o catálogo grava 'meditação'.",
+   "falha_proposital": false
+  },
+  {
+   "id": 5,
+   "mensagem": "malhei 1 hora",
+   "momento": "15:30",
+   "motivo_auto": null,
+   "raiox": {
+    "acoes": [
+     {
+      "confianca": 1.0,
+      "nome": "action_registrar_atividade",
+      "politica": "RulePolicy"
+     },
+     {
+      "confianca": 1.0,
+      "nome": "action_listen",
+      "politica": "RulePolicy"
+     }
+    ],
+    "banco": {
+     "agenda": [],
+     "atividades": [
+      {
+       "data": "2026-11-15",
+       "duracao": 60.0,
+       "hora": "15:30",
+       "id": 4,
+       "intensidade": null,
+       "tipo": "musculação",
+       "usuario": "demo153053"
+      }
+     ]
+    },
+    "entidades": [
+     {
+      "confianca": 0.7115025520324707,
+      "entidade": "tipo_atividade",
+      "extrator": "DIETClassifier",
+      "fim": 6,
+      "inicio": 0,
+      "valor": "malhei"
+     },
+     {
+      "confianca": 0.7649142742156982,
+      "entidade": "duracao",
+      "extrator": "DIETClassifier",
+      "fim": 8,
+      "inicio": 7,
+      "valor": "1"
+     }
+    ],
+    "formulario_ativo": null,
+    "intent": {
+     "confianca": 0.9999914169311523,
+     "nome": "registrar_atividade_rapido"
+    },
+    "latencia_ms": 58,
+    "ranking": [
+     {
+      "confianca": 0.9999914169311523,
+      "nome": "registrar_atividade_rapido"
+     },
+     {
+      "confianca": 7.303596703422954e-06,
+      "nome": "out_of_scope"
+     },
+     {
+      "confianca": 2.3666811443945335e-07,
+      "nome": "bot_challenge"
+     },
+     {
+      "confianca": 1.9432674491781654e-07,
+      "nome": "confirmar_nao"
+     },
+     {
+      "confianca": 1.4900599865086406e-07,
+      "nome": "confirmar_sim"
+     }
+    ],
+    "respostas": [
+     "✅ Registrei: musculação · 60 min.\n🔥 Total hoje: 4 atividades."
+    ],
+    "slots_alterados": [
+     {
+      "nome": "tipo_atividade",
+      "valor": "malhei"
+     },
+     {
+      "nome": "duracao",
+      "valor": "1"
+     },
+     {
+      "nome": "tipo_atividade",
+      "valor": null
+     },
+     {
+      "nome": "duracao",
+      "valor": null
+     },
+     {
+      "nome": "intensidade",
+      "valor": null
+     }
+    ],
+    "slots_finais": {
+     "duracao": null,
+     "intensidade": null,
+     "requested_slot": null,
+     "tipo_atividade": null
+    },
+    "texto": "malhei 1 hora",
+    "tokens": [
+     "malhei",
+     "1",
+     "hora"
+    ]
+   },
+   "respostas": [
+    "✅ Registrei: musculação · 60 min.\n🔥 Total hoje: 4 atividades."
+   ],
+   "usuario": "demo153053",
+   "ato": "3 · Normalização por regra",
+   "nota": "Na v1 isto gravava 1 minuto.",
+   "falha_proposital": false
+  },
+  {
+   "id": 6,
+   "mensagem": "agendar yoga amanhã às 7h",
+   "momento": "15:30",
+   "motivo_auto": null,
+   "raiox": {
+    "acoes": [
+     {
+      "confianca": 1.0,
+      "nome": "action_agendar_atividade",
+      "politica": "RulePolicy"
+     },
+     {
+      "confianca": 1.0,
+      "nome": "action_listen",
+      "politica": "RulePolicy"
+     }
+    ],
+    "banco": {
+     "agenda": [
+      {
+       "concluida_em": null,
+       "data": "2026-11-16",
+       "hora": "07:00",
+       "id": 1,
+       "tipo": "yoga",
+       "usuario": "demo153053"
+      }
+     ],
+     "atividades": []
+    },
+    "entidades": [
+     {
+      "confianca": 0.9996892213821411,
+      "entidade": "tipo_atividade",
+      "extrator": "DIETClassifier",
+      "fim": 12,
+      "inicio": 8,
+      "valor": "yoga"
+     }
+    ],
+    "formulario_ativo": null,
+    "intent": {
+     "confianca": 0.9995610117912292,
+     "nome": "agendar_atividade"
+    },
+    "latencia_ms": 57,
+    "ranking": [
+     {
+      "confianca": 0.9995610117912292,
+      "nome": "agendar_atividade"
+     },
+     {
+      "confianca": 8.526036253897473e-05,
+      "nome": "confirmar_nao"
+     },
+     {
+      "confianca": 7.13820627424866e-05,
+      "nome": "greet"
+     },
+     {
+      "confianca": 6.473554822150618e-05,
+      "nome": "ask_agenda"
+     },
+     {
+      "confianca": 4.51104533567559e-05,
+      "nome": "greet_evening"
+     }
+    ],
+    "respostas": [
+     "📅 Agendei: yoga para amanhã às 07:00.\nQuando fizer, é só me contar que eu dou baixa."
+    ],
+    "slots_alterados": [
+     {
+      "nome": "tipo_atividade",
+      "valor": "yoga"
+     },
+     {
+      "nome": "tipo_atividade",
+      "valor": null
+     },
+     {
+      "nome": "duracao",
+      "valor": null
+     },
+     {
+      "nome": "intensidade",
+      "valor": null
+     }
+    ],
+    "slots_finais": {
+     "duracao": null,
+     "intensidade": null,
+     "requested_slot": null,
+     "tipo_atividade": null
+    },
+    "texto": "agendar yoga amanhã às 7h",
+    "tokens": [
+     "agendar",
+     "yoga",
+     "amanhã",
+     "às",
+     "7h"
+    ]
+   },
+   "respostas": [
+    "📅 Agendei: yoga para amanhã às 07:00.\nQuando fizer, é só me contar que eu dou baixa."
+   ],
+   "usuario": "demo153053",
+   "ato": "4 · Agenda",
+   "nota": null,
+   "falha_proposital": false
+  },
+  {
+   "id": 7,
+   "mensagem": "agendar caminhada hoje às 23h",
+   "momento": "15:30",
+   "motivo_auto": null,
+   "raiox": {
+    "acoes": [
+     {
+      "confianca": 1.0,
+      "nome": "action_agendar_atividade",
+      "politica": "RulePolicy"
+     },
+     {
+      "confianca": 1.0,
+      "nome": "action_listen",
+      "politica": "RulePolicy"
+     }
+    ],
+    "banco": {
+     "agenda": [
+      {
+       "concluida_em": null,
+       "data": "2026-11-15",
+       "hora": "23:00",
+       "id": 2,
+       "tipo": "caminhada",
+       "usuario": "demo153053"
+      }
+     ],
+     "atividades": []
+    },
+    "entidades": [
+     {
+      "confianca": 0.9979382157325745,
+      "entidade": "tipo_atividade",
+      "extrator": "DIETClassifier",
+      "fim": 17,
+      "inicio": 8,
+      "valor": "caminhada"
+     }
+    ],
+    "formulario_ativo": null,
+    "intent": {
+     "confianca": 0.9991875290870667,
+     "nome": "agendar_atividade"
+    },
+    "latencia_ms": 63,
+    "ranking": [
+     {
+      "confianca": 0.9991875290870667,
+      "nome": "agendar_atividade"
+     },
+     {
+      "confianca": 0.00014918021042831242,
+      "nome": "confirmar_nao"
+     },
+     {
+      "confianca": 0.00012021988368360326,
+      "nome": "ask_agenda"
+     },
+     {
+      "confianca": 0.00011075237853219733,
+      "nome": "greet"
+     },
+     {
+      "confianca": 7.304705650312826e-05,
+      "nome": "out_of_scope"
+     }
+    ],
+    "respostas": [
+     "📅 Agendei: caminhada para hoje às 23:00.\nQuando fizer, é só me contar que eu dou baixa."
+    ],
+    "slots_alterados": [
+     {
+      "nome": "tipo_atividade",
+      "valor": "caminhada"
+     },
+     {
+      "nome": "tipo_atividade",
+      "valor": null
+     },
+     {
+      "nome": "duracao",
+      "valor": null
+     },
+     {
+      "nome": "intensidade",
+      "valor": null
+     }
+    ],
+    "slots_finais": {
+     "duracao": null,
+     "intensidade": null,
+     "requested_slot": null,
+     "tipo_atividade": null
+    },
+    "texto": "agendar caminhada hoje às 23h",
+    "tokens": [
+     "agendar",
+     "caminhada",
+     "hoje",
+     "às",
+     "23h"
+    ]
+   },
+   "respostas": [
+    "📅 Agendei: caminhada para hoje às 23:00.\nQuando fizer, é só me contar que eu dou baixa."
+   ],
+   "usuario": "demo153053",
+   "ato": "4 · Agenda",
+   "nota": null,
+   "falha_proposital": false
+  },
+  {
+   "id": 8,
+   "mensagem": "minha agenda",
+   "momento": "15:30",
+   "motivo_auto": null,
+   "raiox": {
+    "acoes": [
+     {
+      "confianca": 1.0,
+      "nome": "action_mostrar_agenda",
+      "politica": "RulePolicy"
+     },
+     {
+      "confianca": 1.0,
+      "nome": "action_listen",
+      "politica": "RulePolicy"
+     }
+    ],
+    "banco": {
+     "agenda": [],
+     "atividades": []
+    },
+    "entidades": [],
+    "formulario_ativo": null,
+    "intent": {
+     "confianca": 0.9980237483978271,
+     "nome": "ask_agenda"
+    },
+    "latencia_ms": 54,
+    "ranking": [
+     {
+      "confianca": 0.9980237483978271,
+      "nome": "ask_agenda"
+     },
+     {
+      "confianca": 0.0006426125182770193,
+      "nome": "bot_challenge"
+     },
+     {
+      "confianca": 0.00045078605762682855,
+      "nome": "greet_morning"
+     },
+     {
+      "confianca": 0.00015224837989080697,
+      "nome": "ask_ajuda"
+     },
+     {
+      "confianca": 0.00014030472084414214,
+      "nome": "agendar_atividade"
+     }
+    ],
+    "respostas": [
+     "📅 Sua agenda (2 itens):\n1. Caminhada - hoje às 23:00\n2. Yoga - amanhã às 07:00"
+    ],
+    "slots_alterados": [],
+    "slots_finais": {
+     "duracao": null,
+     "intensidade": null,
+     "requested_slot": null,
+     "tipo_atividade": null
+    },
+    "texto": "minha agenda",
+    "tokens": [
+     "minha",
+     "agenda"
+    ]
+   },
+   "respostas": [
+    "📅 Sua agenda (2 itens):\n1. Caminhada - hoje às 23:00\n2. Yoga - amanhã às 07:00"
+   ],
+   "usuario": "demo153053",
+   "ato": "4 · Agenda",
+   "nota": null,
+   "falha_proposital": false
+  },
+  {
+   "id": 9,
+   "mensagem": "caminhei 20 minutos",
+   "momento": "15:30",
+   "motivo_auto": null,
+   "raiox": {
+    "acoes": [
+     {
+      "confianca": 1.0,
+      "nome": "action_registrar_atividade",
+      "politica": "RulePolicy"
+     },
+     {
+      "confianca": 1.0,
+      "nome": "action_listen",
+      "politica": "RulePolicy"
+     }
+    ],
+    "banco": {
+     "agenda": [],
+     "atividades": [
+      {
+       "data": "2026-11-15",
+       "duracao": 20.0,
+       "hora": "15:30",
+       "id": 5,
+       "intensidade": null,
+       "tipo": "caminhada",
+       "usuario": "demo153053"
+      }
+     ]
+    },
+    "entidades": [
+     {
+      "confianca": 0.5445295572280884,
+      "entidade": "tipo_atividade",
+      "extrator": "DIETClassifier",
+      "fim": 8,
+      "inicio": 0,
+      "valor": "caminhei"
+     },
+     {
+      "confianca": 0.8006805181503296,
+      "entidade": "duracao",
+      "extrator": "DIETClassifier",
+      "fim": 11,
+      "inicio": 9,
+      "valor": "20"
+     }
+    ],
+    "formulario_ativo": null,
+    "intent": {
+     "confianca": 1.0,
+     "nome": "registrar_atividade_rapido"
+    },
+    "latencia_ms": 61,
+    "ranking": [
+     {
+      "confianca": 1.0,
+      "nome": "registrar_atividade_rapido"
+     },
+     {
+      "confianca": 1.90165816427168e-09,
+      "nome": "greet_morning"
+     },
+     {
+      "confianca": 1.0810528028315503e-09,
+      "nome": "greet_evening"
+     },
+     {
+      "confianca": 7.786679634413929e-10,
+      "nome": "out_of_scope"
+     },
+     {
+      "confianca": 7.043124972128112e-10,
+      "nome": "greet_afternoon"
+     }
+    ],
+    "respostas": [
+     "✅ Registrei: caminhada · 20 min.\n🔥 Total hoje: 5 atividades.\n📅 Isso cumpre o que você tinha agendado para as 23:00.\n🌟 Cinco atividades hoje!"
+    ],
+    "slots_alterados": [
+     {
+      "nome": "tipo_atividade",
+      "valor": "caminhei"
+     },
+     {
+      "nome": "duracao",
+      "valor": "20"
+     },
+     {
+      "nome": "tipo_atividade",
+      "valor": null
+     },
+     {
+      "nome": "duracao",
+      "valor": null
+     },
+     {
+      "nome": "intensidade",
+      "valor": null
+     }
+    ],
+    "slots_finais": {
+     "duracao": null,
+     "intensidade": null,
+     "requested_slot": null,
+     "tipo_atividade": null
+    },
+    "texto": "caminhei 20 minutos",
+    "tokens": [
+     "caminhei",
+     "20",
+     "minutos"
+    ]
+   },
+   "respostas": [
+    "✅ Registrei: caminhada · 20 min.\n🔥 Total hoje: 5 atividades.\n📅 Isso cumpre o que você tinha agendado para as 23:00.\n🌟 Cinco atividades hoje!"
+   ],
+   "usuario": "demo153053",
+   "ato": "4 · Agenda",
+   "nota": null,
+   "falha_proposital": false
+  },
+  {
+   "id": 10,
+   "mensagem": "quero registrar uma atividade",
+   "momento": "15:30",
+   "motivo_auto": null,
+   "raiox": {
+    "acoes": [
+     {
+      "confianca": 1.0,
+      "nome": "atividade_detalhada_form",
+      "politica": "RulePolicy"
+     },
+     {
+      "confianca": 1.0,
+      "nome": "action_listen",
+      "politica": "RulePolicy"
+     }
+    ],
+    "banco": {
+     "agenda": [],
+     "atividades": []
+    },
+    "entidades": [],
+    "formulario_ativo": "atividade_detalhada_form",
+    "intent": {
+     "confianca": 0.9987118244171143,
+     "nome": "registrar_atividade_detalhado"
+    },
+    "latencia_ms": 98,
+    "ranking": [
+     {
+      "confianca": 0.9987118244171143,
+      "nome": "registrar_atividade_detalhado"
+     },
+     {
+      "confianca": 0.00038895325269550085,
+      "nome": "bot_challenge"
+     },
+     {
+      "confianca": 0.00016945179959293455,
+      "nome": "greet_afternoon"
+     },
+     {
+      "confianca": 0.00014212528185453266,
+      "nome": "greet_morning"
+     },
+     {
+      "confianca": 0.0001243517908733338,
+      "nome": "greet"
+     }
+    ],
+    "respostas": [
+     "Que tipo de atividade você fez? 🏃"
+    ],
+    "slots_alterados": [
+     {
+      "nome": "requested_slot",
+      "valor": "tipo_atividade"
+     }
+    ],
+    "slots_finais": {
+     "duracao": null,
+     "intensidade": null,
+     "requested_slot": "tipo_atividade",
+     "tipo_atividade": null
+    },
+    "texto": "quero registrar uma atividade",
+    "tokens": [
+     "quero",
+     "registrar",
+     "uma",
+     "atividade"
+    ]
+   },
+   "respostas": [
+    "Que tipo de atividade você fez? 🏃"
+   ],
+   "usuario": "demo153053",
+   "ato": "5 · Formulário",
+   "nota": null,
+   "falha_proposital": false
+  },
+  {
+   "id": 11,
+   "mensagem": "natação",
+   "momento": "15:30",
+   "motivo_auto": null,
+   "raiox": {
+    "acoes": [
+     {
+      "confianca": 1.0,
+      "nome": "atividade_detalhada_form",
+      "politica": "RulePolicy"
+     },
+     {
+      "confianca": 1.0,
+      "nome": "action_listen",
+      "politica": "RulePolicy"
+     }
+    ],
+    "banco": {
+     "agenda": [],
+     "atividades": []
+    },
+    "entidades": [
+     {
+      "confianca": 0.9994275569915771,
+      "entidade": "tipo_atividade",
+      "extrator": "DIETClassifier",
+      "fim": 7,
+      "inicio": 0,
+      "valor": "natação"
+     }
+    ],
+    "formulario_ativo": "atividade_detalhada_form",
+    "intent": {
+     "confianca": 1.0,
+     "nome": "registrar_atividade_rapido"
+    },
+    "latencia_ms": 78,
+    "ranking": [
+     {
+      "confianca": 1.0,
+      "nome": "registrar_atividade_rapido"
+     },
+     {
+      "confianca": 3.836205131335646e-09,
+      "nome": "greet_morning"
+     },
+     {
+      "confianca": 2.2745936245627263e-09,
+      "nome": "greet_evening"
+     },
+     {
+      "confianca": 2.2176305236598637e-09,
+      "nome": "ask_motivacao"
+     },
+     {
+      "confianca": 1.883709188632565e-09,
+      "nome": "greet_afternoon"
+     }
+    ],
+    "respostas": [
+     "Por quantos minutos? ⏱️"
+    ],
+    "slots_alterados": [
+     {
+      "nome": "tipo_atividade",
+      "valor": "natação"
+     },
+     {
+      "nome": "tipo_atividade",
+      "valor": "natação"
+     },
+     {
+      "nome": "requested_slot",
+      "valor": "duracao"
+     }
+    ],
+    "slots_finais": {
+     "duracao": null,
+     "intensidade": null,
+     "requested_slot": "duracao",
+     "tipo_atividade": "natação"
+    },
+    "texto": "natação",
+    "tokens": [
+     "natação"
+    ]
+   },
+   "respostas": [
+    "Por quantos minutos? ⏱️"
+   ],
+   "usuario": "demo153053",
+   "ato": "5 · Formulário",
+   "nota": null,
+   "falha_proposital": false
+  },
+  {
+   "id": 12,
+   "mensagem": "um tempão",
+   "momento": "15:30",
+   "motivo_auto": null,
+   "raiox": {
+    "acoes": [
+     {
+      "confianca": 1.0,
+      "nome": "atividade_detalhada_form",
+      "politica": "RulePolicy"
+     },
+     {
+      "confianca": 1.0,
+      "nome": "action_listen",
+      "politica": "RulePolicy"
+     }
+    ],
+    "banco": {
+     "agenda": [],
+     "atividades": []
+    },
+    "entidades": [],
+    "formulario_ativo": "atividade_detalhada_form",
+    "intent": {
+     "confianca": 0.9311750531196594,
+     "nome": "out_of_scope"
+    },
+    "latencia_ms": 62,
+    "ranking": [
+     {
+      "confianca": 0.9311750531196594,
+      "nome": "out_of_scope"
+     },
+     {
+      "confianca": 0.03223717212677002,
+      "nome": "bot_challenge"
+     },
+     {
+      "confianca": 0.016937274485826492,
+      "nome": "confirmar_nao"
+     },
+     {
+      "confianca": 0.0038008063565939665,
+      "nome": "confirmar_sim"
+     },
+     {
+      "confianca": 0.0035388441756367683,
+      "nome": "ask_motivacao"
+     }
+    ],
+    "respostas": [
+     "⚠️ Não entendi a duração. Digite, por exemplo: 30, 45 minutos ou 1 hora.",
+     "Por quantos minutos? ⏱️"
+    ],
+    "slots_alterados": [
+     {
+      "nome": "duracao",
+      "valor": "um tempão"
+     },
+     {
+      "nome": "duracao",
+      "valor": null
+     },
+     {
+      "nome": "requested_slot",
+      "valor": "duracao"
+     }
+    ],
+    "slots_finais": {
+     "duracao": null,
+     "intensidade": null,
+     "requested_slot": "duracao",
+     "tipo_atividade": "natação"
+    },
+    "texto": "um tempão",
+    "tokens": [
+     "um",
+     "tempão"
+    ]
+   },
+   "respostas": [
+    "⚠️ Não entendi a duração. Digite, por exemplo: 30, 45 minutos ou 1 hora.",
+    "Por quantos minutos? ⏱️"
+   ],
+   "usuario": "demo153053",
+   "ato": "5 · Formulário",
+   "nota": "Resposta inválida: a validação do formulário explica e pergunta de novo.",
+   "falha_proposital": false
+  },
+  {
+   "id": 13,
+   "mensagem": "45",
+   "momento": "15:30",
+   "motivo_auto": null,
+   "raiox": {
+    "acoes": [
+     {
+      "confianca": 1.0,
+      "nome": "atividade_detalhada_form",
+      "politica": "RulePolicy"
+     },
+     {
+      "confianca": 1.0,
+      "nome": "action_listen",
+      "politica": "RulePolicy"
+     }
+    ],
+    "banco": {
+     "agenda": [],
+     "atividades": []
+    },
+    "entidades": [
+     {
+      "confianca": 0.7108248472213745,
+      "entidade": "duracao",
+      "extrator": "DIETClassifier",
+      "fim": 2,
+      "inicio": 0,
+      "valor": "45"
+     }
+    ],
+    "formulario_ativo": "atividade_detalhada_form",
+    "intent": {
+     "confianca": 0.9879485368728638,
+     "nome": "registrar_atividade_rapido"
+    },
+    "latencia_ms": 55,
+    "ranking": [
+     {
+      "confianca": 0.9879485368728638,
+      "nome": "registrar_atividade_rapido"
+     },
+     {
+      "confianca": 0.010853760875761509,
+      "nome": "out_of_scope"
+     },
+     {
+      "confianca": 0.00033921594149433076,
+      "nome": "confirmar_nao"
+     },
+     {
+      "confianca": 0.00023513268388342112,
+      "nome": "confirmar_sim"
+     },
+     {
+      "confianca": 0.00019215124484617263,
+      "nome": "bot_challenge"
+     }
+    ],
+    "respostas": [
+     "Qual foi a intensidade? (leve / moderada / intensa) 💪"
+    ],
+    "slots_alterados": [
+     {
+      "nome": "duracao",
+      "valor": "45"
+     },
+     {
+      "nome": "duracao",
+      "valor": 45.0
+     },
+     {
+      "nome": "requested_slot",
+      "valor": "intensidade"
+     }
+    ],
+    "slots_finais": {
+     "duracao": 45.0,
+     "intensidade": null,
+     "requested_slot": "intensidade",
+     "tipo_atividade": "natação"
+    },
+    "texto": "45",
+    "tokens": [
+     "45"
+    ]
+   },
+   "respostas": [
+    "Qual foi a intensidade? (leve / moderada / intensa) 💪"
+   ],
+   "usuario": "demo153053",
+   "ato": "5 · Formulário",
+   "nota": null,
+   "falha_proposital": false
+  },
+  {
+   "id": 14,
+   "mensagem": "forte",
+   "momento": "15:30",
+   "motivo_auto": null,
+   "raiox": {
+    "acoes": [
+     {
+      "confianca": 1.0,
+      "nome": "atividade_detalhada_form",
+      "politica": "RulePolicy"
+     },
+     {
+      "confianca": 1.0,
+      "nome": "action_submit_atividade_form",
+      "politica": "RulePolicy"
+     },
+     {
+      "confianca": 1.0,
+      "nome": "action_listen",
+      "politica": "RulePolicy"
+     }
+    ],
+    "banco": {
+     "agenda": [],
+     "atividades": [
+      {
+       "data": "2026-11-15",
+       "duracao": 45.0,
+       "hora": "15:30",
+       "id": 6,
+       "intensidade": "intensa",
+       "tipo": "natação",
+       "usuario": "demo153053"
+      }
+     ]
+    },
+    "entidades": [],
+    "formulario_ativo": null,
+    "intent": {
+     "confianca": 0.5,
+     "nome": "nlu_fallback"
+    },
+    "latencia_ms": 93,
+    "ranking": [
+     {
+      "confianca": 0.5,
+      "nome": "nlu_fallback"
+     },
+     {
+      "confianca": 0.2875032126903534,
+      "nome": "confirmar_sim"
+     },
+     {
+      "confianca": 0.193841353058815,
+      "nome": "confirmar_nao"
+     },
+     {
+      "confianca": 0.182722806930542,
+      "nome": "goodbye"
+     },
+     {
+      "confianca": 0.08541370183229446,
+      "nome": "greet"
+     }
+    ],
+    "respostas": [
+     "✅ Registrei: natação · 45 min · intensa.\n🔥 Total hoje: 6 atividades."
+    ],
+    "slots_alterados": [
+     {
+      "nome": "intensidade",
+      "valor": "forte"
+     },
+     {
+      "nome": "intensidade",
+      "valor": "intensa"
+     },
+     {
+      "nome": "requested_slot",
+      "valor": null
+     },
+     {
+      "nome": "tipo_atividade",
+      "valor": null
+     },
+     {
+      "nome": "duracao",
+      "valor": null
+     },
+     {
+      "nome": "intensidade",
+      "valor": null
+     }
+    ],
+    "slots_finais": {
+     "duracao": null,
+     "intensidade": null,
+     "requested_slot": null,
+     "tipo_atividade": null
+    },
+    "texto": "forte",
+    "tokens": [
+     "forte"
+    ]
+   },
+   "respostas": [
+    "✅ Registrei: natação · 45 min · intensa.\n🔥 Total hoje: 6 atividades."
+   ],
+   "usuario": "demo153053",
+   "ato": "5 · Formulário",
+   "nota": null,
+   "falha_proposital": false
+  },
+  {
+   "id": 15,
+   "mensagem": "quero registrar exercício",
+   "momento": "15:30",
+   "motivo_auto": null,
+   "raiox": {
+    "acoes": [
+     {
+      "confianca": 1.0,
+      "nome": "atividade_detalhada_form",
+      "politica": "RulePolicy"
+     },
+     {
+      "confianca": 1.0,
+      "nome": "action_listen",
+      "politica": "RulePolicy"
+     }
+    ],
+    "banco": {
+     "agenda": [],
+     "atividades": []
+    },
+    "entidades": [
+     {
+      "confianca": 0.8550578951835632,
+      "entidade": "tipo_atividade",
+      "extrator": "DIETClassifier",
+      "fim": 25,
+      "inicio": 16,
+      "valor": "exercício"
+     }
+    ],
+    "formulario_ativo": "atividade_detalhada_form",
+    "intent": {
+     "confianca": 0.9991224408149719,
+     "nome": "registrar_atividade_detalhado"
+    },
+    "latencia_ms": 89,
+    "ranking": [
+     {
+      "confianca": 0.9991224408149719,
+      "nome": "registrar_atividade_detalhado"
+     },
+     {
+      "confianca": 0.00028650337480939925,
+      "nome": "bot_challenge"
+     },
+     {
+      "confianca": 0.00012233274173922837,
+      "nome": "greet_morning"
+     },
+     {
+      "confianca": 0.00010787911742227152,
+      "nome": "greet_afternoon"
+     },
+     {
+      "confianca": 9.576447337167338e-05,
+      "nome": "ask_ajuda"
+     }
+    ],
+    "respostas": [
+     "Que tipo de atividade você fez? 🏃"
+    ],
+    "slots_alterados": [
+     {
+      "nome": "requested_slot",
+      "valor": "tipo_atividade"
+     }
+    ],
+    "slots_finais": {
+     "duracao": null,
+     "intensidade": null,
+     "requested_slot": "tipo_atividade",
+     "tipo_atividade": null
+    },
+    "texto": "quero registrar exercício",
+    "tokens": [
+     "quero",
+     "registrar",
+     "exercício"
+    ]
+   },
+   "respostas": [
+    "Que tipo de atividade você fez? 🏃"
+   ],
+   "usuario": "demo153053",
+   "ato": "6 · Cancelamento",
+   "nota": "Na v1 o bot pulava esta pergunta.",
+   "falha_proposital": false
+  },
+  {
+   "id": 16,
+   "mensagem": "cancelar",
+   "momento": "15:30",
+   "motivo_auto": null,
+   "raiox": {
+    "acoes": [
+     {
+      "confianca": 1.0,
+      "nome": "action_deactivate_loop",
+      "politica": "RulePolicy"
+     },
+     {
+      "confianca": 1.0,
+      "nome": "action_limpar_slots_atividade",
+      "politica": "RulePolicy"
+     },
+     {
+      "confianca": 1.0,
+      "nome": "utter_stop",
+      "politica": "RulePolicy"
+     },
+     {
+      "confianca": 1.0,
+      "nome": "action_listen",
+      "politica": "RulePolicy"
+     }
+    ],
+    "banco": {
+     "agenda": [],
+     "atividades": []
+    },
+    "entidades": [],
+    "formulario_ativo": null,
+    "intent": {
+     "confianca": 0.9934600591659546,
+     "nome": "stop"
+    },
+    "latencia_ms": 119,
+    "ranking": [
+     {
+      "confianca": 0.9934600591659546,
+      "nome": "stop"
+     },
+     {
+      "confianca": 0.0017993388464674354,
+      "nome": "ask_ajuda"
+     },
+     {
+      "confianca": 0.001756402081809938,
+      "nome": "greet_afternoon"
+     },
+     {
+      "confianca": 0.000996762071736157,
+      "nome": "greet_evening"
+     },
+     {
+      "confianca": 0.0004351363459136337,
+      "nome": "bot_challenge"
+     }
+    ],
+    "respostas": [
+     "Ok, cancelado. Nada foi registrado. Se precisar, é só chamar! 👋"
+    ],
+    "slots_alterados": [
+     {
+      "nome": "requested_slot",
+      "valor": null
+     },
+     {
+      "nome": "tipo_atividade",
+      "valor": null
+     },
+     {
+      "nome": "duracao",
+      "valor": null
+     },
+     {
+      "nome": "intensidade",
+      "valor": null
+     }
+    ],
+    "slots_finais": {
+     "duracao": null,
+     "intensidade": null,
+     "requested_slot": null,
+     "tipo_atividade": null
+    },
+    "texto": "cancelar",
+    "tokens": [
+     "cancelar"
+    ]
+   },
+   "respostas": [
+    "Ok, cancelado. Nada foi registrado. Se precisar, é só chamar! 👋"
+   ],
+   "usuario": "demo153053",
+   "ato": "6 · Cancelamento",
+   "nota": "Na v1 o formulário continuava ativo.",
+   "falha_proposital": false
+  },
+  {
+   "id": 17,
+   "mensagem": "como estou hoje?",
+   "momento": "15:30",
+   "motivo_auto": null,
+   "raiox": {
+    "acoes": [
+     {
+      "confianca": 1.0,
+      "nome": "action_mostrar_progresso_hoje",
+      "politica": "RulePolicy"
+     },
+     {
+      "confianca": 1.0,
+      "nome": "action_listen",
+      "politica": "RulePolicy"
+     }
+    ],
+    "banco": {
+     "agenda": [],
+     "atividades": []
+    },
+    "entidades": [],
+    "formulario_ativo": null,
+    "intent": {
+     "confianca": 0.9986151456832886,
+     "nome": "ask_progresso_hoje"
+    },
+    "latencia_ms": 66,
+    "ranking": [
+     {
+      "confianca": 0.9986151456832886,
+      "nome": "ask_progresso_hoje"
+     },
+     {
+      "confianca": 0.000492484774440527,
+      "nome": "ask_progresso_semana"
+     },
+     {
+      "confianca": 0.0002655443677213043,
+      "nome": "stop"
+     },
+     {
+      "confianca": 0.00017607896006666124,
+      "nome": "greet_morning"
+     },
+     {
+      "confianca": 0.00015444551536347717,
+      "nome": "out_of_scope"
+     }
+    ],
+    "respostas": [
+     "📊 Seu progresso hoje (6 atividades):\n1. Água - 15:30\n2. Corrida · 30 min · intensa - 15:30\n3. Meditação - 15:30\n4. Musculação · 60 min - 15:30\n5. Caminhada · 20 min - 15:30\n6. Natação · 45 min · intensa - 15:30\n⏱️ Tempo total: 155 minutos\n🔥 Continue assim!"
+    ],
+    "slots_alterados": [],
+    "slots_finais": {
+     "duracao": null,
+     "intensidade": null,
+     "requested_slot": null,
+     "tipo_atividade": null
+    },
+    "texto": "como estou hoje?",
+    "tokens": [
+     "como",
+     "estou",
+     "hoje"
+    ]
+   },
+   "respostas": [
+    "📊 Seu progresso hoje (6 atividades):\n1. Água - 15:30\n2. Corrida · 30 min · intensa - 15:30\n3. Meditação - 15:30\n4. Musculação · 60 min - 15:30\n5. Caminhada · 20 min - 15:30\n6. Natação · 45 min · intensa - 15:30\n⏱️ Tempo total: 155 minutos\n🔥 Continue assim!"
+   ],
+   "usuario": "demo153053",
+   "ato": "6 · Cancelamento",
+   "nota": null,
+   "falha_proposital": false
+  },
+  {
+   "id": 18,
+   "mensagem": "tomei um café",
+   "momento": "15:30",
+   "motivo_auto": "entendeu a intenção, mas não a atividade",
+   "raiox": {
+    "acoes": [
+     {
+      "confianca": 1.0,
+      "nome": "action_registrar_atividade",
+      "politica": "RulePolicy"
+     },
+     {
+      "confianca": 1.0,
+      "nome": "action_listen",
+      "politica": "RulePolicy"
+     }
+    ],
+    "banco": {
+     "agenda": [],
+     "atividades": []
+    },
+    "entidades": [],
+    "formulario_ativo": null,
+    "intent": {
+     "confianca": 0.9998241066932678,
+     "nome": "registrar_atividade_rapido"
+    },
+    "latencia_ms": 71,
+    "ranking": [
+     {
+      "confianca": 0.9998241066932678,
+      "nome": "registrar_atividade_rapido"
+     },
+     {
+      "confianca": 6.617615144932643e-05,
+      "nome": "confirmar_sim"
+     },
+     {
+      "confianca": 4.525712938630022e-05,
+      "nome": "bot_challenge"
+     },
+     {
+      "confianca": 2.585121910669841e-05,
+      "nome": "out_of_scope"
+     },
+     {
+      "confianca": 1.6825208149384707e-05,
+      "nome": "greet_morning"
+     }
+    ],
+    "respostas": [
+     "Entendi que você quer registrar algo, mas não identifiquei a atividade. 🤔\nTente: 'bebi água', 'corri 20 minutos' ou 'meditei'."
+    ],
+    "slots_alterados": [
+     {
+      "nome": "tipo_atividade",
+      "valor": null
+     },
+     {
+      "nome": "duracao",
+      "valor": null
+     },
+     {
+      "nome": "intensidade",
+      "valor": null
+     }
+    ],
+    "slots_finais": {
+     "duracao": null,
+     "intensidade": null,
+     "requested_slot": null,
+     "tipo_atividade": null
+    },
+    "texto": "tomei um café",
+    "tokens": [
+     "tomei",
+     "um",
+     "café"
+    ]
+   },
+   "respostas": [
+    "Entendi que você quer registrar algo, mas não identifiquei a atividade. 🤔\nTente: 'bebi água', 'corri 20 minutos' ou 'meditei'."
+   ],
+   "usuario": "demo153053",
+   "ato": "7 · Falhas de propósito",
+   "nota": "Classificador de mundo fechado: sempre escolhe um dos intents que conhece.",
+   "falha_proposital": true
+  },
+  {
+   "id": 19,
+   "mensagem": "bebi h2o",
+   "momento": "15:30",
+   "motivo_auto": "entendeu a intenção, mas não a atividade",
+   "raiox": {
+    "acoes": [
+     {
+      "confianca": 1.0,
+      "nome": "action_registrar_atividade",
+      "politica": "RulePolicy"
+     },
+     {
+      "confianca": 1.0,
+      "nome": "action_listen",
+      "politica": "RulePolicy"
+     }
+    ],
+    "banco": {
+     "agenda": [],
+     "atividades": []
+    },
+    "entidades": [],
+    "formulario_ativo": null,
+    "intent": {
+     "confianca": 0.9999841451644897,
+     "nome": "registrar_atividade_rapido"
+    },
+    "latencia_ms": 68,
+    "ranking": [
+     {
+      "confianca": 0.9999841451644897,
+      "nome": "registrar_atividade_rapido"
+     },
+     {
+      "confianca": 3.2498815016879234e-06,
+      "nome": "confirmar_sim"
+     },
+     {
+      "confianca": 2.4256419237644877e-06,
+      "nome": "greet_morning"
+     },
+     {
+      "confianca": 1.4277127320383443e-06,
+      "nome": "greet"
+     },
+     {
+      "confianca": 1.1935700285903295e-06,
+      "nome": "greet_afternoon"
+     }
+    ],
+    "respostas": [
+     "Entendi que você quer registrar algo, mas não identifiquei a atividade. 🤔\nTente: 'bebi água', 'corri 20 minutos' ou 'meditei'."
+    ],
+    "slots_alterados": [
+     {
+      "nome": "tipo_atividade",
+      "valor": null
+     },
+     {
+      "nome": "duracao",
+      "valor": null
+     },
+     {
+      "nome": "intensidade",
+      "valor": null
+     }
+    ],
+    "slots_finais": {
+     "duracao": null,
+     "intensidade": null,
+     "requested_slot": null,
+     "tipo_atividade": null
+    },
+    "texto": "bebi h2o",
+    "tokens": [
+     "bebi",
+     "h2o"
+    ]
+   },
+   "respostas": [
+    "Entendi que você quer registrar algo, mas não identifiquei a atividade. 🤔\nTente: 'bebi água', 'corri 20 minutos' ou 'meditei'."
+   ],
+   "usuario": "demo153053",
+   "ato": "7 · Falhas de propósito",
+   "nota": "É a falha corrigida ao vivo com `python run.py corrigir-ao-vivo`.",
+   "falha_proposital": true
+  },
+  {
+   "id": 20,
+   "mensagem": "qual a capital da França?",
+   "momento": "15:30",
+   "motivo_auto": null,
+   "raiox": {
+    "acoes": [
+     {
+      "confianca": 1.0,
+      "nome": "utter_out_of_scope",
+      "politica": "RulePolicy"
+     },
+     {
+      "confianca": 1.0,
+      "nome": "action_listen",
+      "politica": "RulePolicy"
+     }
+    ],
+    "banco": {
+     "agenda": [],
+     "atividades": []
+    },
+    "entidades": [],
+    "formulario_ativo": null,
+    "intent": {
+     "confianca": 0.7971768379211426,
+     "nome": "out_of_scope"
+    },
+    "latencia_ms": 45,
+    "ranking": [
+     {
+      "confianca": 0.7971768379211426,
+      "nome": "out_of_scope"
+     },
+     {
+      "confianca": 0.05021455138921738,
+      "nome": "bot_challenge"
+     },
+     {
+      "confianca": 0.043020591139793396,
+      "nome": "registrar_atividade_detalhado"
+     },
+     {
+      "confianca": 0.017772607505321503,
+      "nome": "ask_progresso_semana"
+     },
+     {
+      "confianca": 0.016808316111564636,
+      "nome": "ask_progresso_hoje"
+     }
+    ],
+    "respostas": [
+     "Isso está fora da minha área. 😅 Eu cuido de atividades: registrar, agendar e mostrar o progresso. Digite 'ajuda' para ver exemplos."
+    ],
+    "slots_alterados": [],
+    "slots_finais": {
+     "duracao": null,
+     "intensidade": null,
+     "requested_slot": null,
+     "tipo_atividade": null
+    },
+    "texto": "qual a capital da França?",
+    "tokens": [
+     "qual",
+     "a",
+     "capital",
+     "da",
+     "França"
+    ]
+   },
+   "respostas": [
+    "Isso está fora da minha área. 😅 Eu cuido de atividades: registrar, agendar e mostrar o progresso. Digite 'ajuda' para ver exemplos."
+   ],
+   "usuario": "demo153053",
+   "ato": "8 · Encerramento",
+   "nota": null,
+   "falha_proposital": false
+  },
+  {
+   "id": 21,
+   "mensagem": "tchau",
+   "momento": "15:30",
+   "motivo_auto": null,
+   "raiox": {
+    "acoes": [
+     {
+      "confianca": 1.0,
+      "nome": "utter_goodbye",
+      "politica": "RulePolicy"
+     },
+     {
+      "confianca": 1.0,
+      "nome": "action_listen",
+      "politica": "RulePolicy"
+     }
+    ],
+    "banco": {
+     "agenda": [],
+     "atividades": []
+    },
+    "entidades": [],
+    "formulario_ativo": null,
+    "intent": {
+     "confianca": 0.9975610971450806,
+     "nome": "goodbye"
+    },
+    "latencia_ms": 42,
+    "ranking": [
+     {
+      "confianca": 0.9975610971450806,
+      "nome": "goodbye"
+     },
+     {
+      "confianca": 0.0003180014027748257,
+      "nome": "greet"
+     },
+     {
+      "confianca": 0.00028623820981010795,
+      "nome": "confirmar_nao"
+     },
+     {
+      "confianca": 0.0002414041373413056,
+      "nome": "ask_ajuda"
+     },
+     {
+      "confianca": 0.0002289311814820394,
+      "nome": "ask_progresso_hoje"
+     }
+    ],
+    "respostas": [
+     "Até mais! Lembre-se: constância é a chave! 🔥"
+    ],
+    "slots_alterados": [],
+    "slots_finais": {
+     "duracao": null,
+     "intensidade": null,
+     "requested_slot": null,
+     "tipo_atividade": null
+    },
+    "texto": "tchau",
+    "tokens": [
+     "tchau"
+    ]
+   },
+   "respostas": [
+    "Até mais! Lembre-se: constância é a chave! 🔥"
+   ],
+   "usuario": "demo153053",
+   "ato": "8 · Encerramento",
+   "nota": null,
+   "falha_proposital": false
+  }
+ ]
+}

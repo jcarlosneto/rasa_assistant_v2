@@ -1,0 +1,116 @@
+# 🎓 CONFIGURAÇÃO DO RASA - ARQUIVO DIDÁTICO
+# ===========================================
+# Este arquivo configura como o Rasa processa mensagens e toma decisões.
+#
+# 📚 CONCEITOS IMPORTANTES:
+# - Pipeline: Define como o texto é processado (tokenização, features, classificação)
+# - Policies: Definem como o bot decide qual action tomar em seguida
+# - Language: Idioma do chatbot (pt = português)
+
+recipe: default.v1
+
+# 🆔 Identificador único do assistente
+assistant_id: rasa-assistente-atividades-educacional
+
+# 🌍 Idioma: Português do Brasil
+language: pt
+
+# 🔄 PIPELINE NLU (Natural Language Understanding)
+# ================================================
+# O pipeline processa mensagens do usuário em etapas sequenciais.
+# Cada componente adiciona informações que ajudam o próximo.
+
+pipeline:
+  # 1️⃣ WhitespaceTokenizer
+  # Divide texto em palavras (tokens) usando espaços
+  # Ex: "bebi água" → ["bebi", "água"]
+  - name: WhitespaceTokenizer
+  
+  # 2️⃣ RegexFeaturizer
+  # Extrai padrões usando expressões regulares
+  # Ex: números, emails, URLs
+  - name: RegexFeaturizer
+  
+  # 3️⃣ LexicalSyntacticFeaturizer
+  # Extrai características léxicas (maiúsculas, pontuação, etc)
+  - name: LexicalSyntacticFeaturizer
+  
+  # 4️⃣ CountVectorsFeaturizer (palavras completas)
+  # Conta frequência de palavras para criar features
+  - name: CountVectorsFeaturizer
+  
+  # 5️⃣ CountVectorsFeaturizer (caracteres)
+  # Conta sequências de caracteres (útil para typos)
+  # Ex: "bomdia" ainda funciona mesmo sem espaço
+  - name: CountVectorsFeaturizer
+    analyzer: char_wb
+    min_ngram: 1
+    max_ngram: 4
+  
+  # 6️⃣ DIETClassifier (Dual Intent Entity Transformer)
+  # 🧠 CORAÇÃO DO NLU - Rede neural que classifica intents E extrai entities
+  # epochs: quantas vezes treina com os dados (mais = melhor, mas mais lento)
+  - name: DIETClassifier
+    epochs: 60
+    constrain_similarities: true
+    random_seed: 42
+    # 🎓 epochs: mais = aprende melhor, treina mais devagar. random_seed fixa o
+    # sorteio inicial para o treino dar o mesmo resultado na mesma máquina.
+  
+  # 7️⃣ EntitySynonymMapper
+  # Mapeia sinônimos de entities
+  # Ex: "H2O" → "água"
+  - name: EntitySynonymMapper
+  
+  # 8️⃣ ResponseSelector
+  # Seleciona respostas para FAQs e small talk
+  - name: ResponseSelector
+    epochs: 20
+    constrain_similarities: true
+    random_seed: 42
+  
+  # 9️⃣ FallbackClassifier
+  # Detecta quando o bot não entende (baixa confiança)
+  # threshold: abaixo disso, aciona fallback
+  - name: FallbackClassifier
+    threshold: 0.5  # 🎓 50% de confiança mínima
+    ambiguity_threshold: 0.1
+
+# 🧠 POLICIES (Políticas de Diálogo)
+# ===================================
+# Definem como o Core decide qual action executar.
+
+policies:
+  # 1️⃣ MemoizationPolicy
+  # Memoriza conversas exatas do treinamento
+  # Se viu essa sequência antes, repete a mesma action
+  - name: MemoizationPolicy
+    max_history: 5  # Considera últimas 5 interações
+  
+  # 2️⃣ RulePolicy
+  # Executa regras definidas em rules.yml
+  # Ex: sempre responder "tchau" com despedida
+  - name: RulePolicy
+    core_fallback_threshold: 0.3
+    core_fallback_action_name: "action_default_fallback"
+  
+  # 3️⃣ UnexpecTEDIntentPolicy
+  # Prevê próxima action baseada em intents inesperadas
+  - name: UnexpecTEDIntentPolicy
+    max_history: 5
+    epochs: 20
+    random_seed: 42
+  
+  # 4️⃣ TEDPolicy (Transformer Embedding Dialogue)
+  # 🧠 CORAÇÃO DO CORE - Rede neural que prevê próxima action
+  # Aprende padrões de diálogo a partir das stories
+  - name: TEDPolicy
+    max_history: 5
+    epochs: 20
+    constrain_similarities: true
+    random_seed: 42
+
+# 🎓 DICA PARA PROFESSORES:
+# Os valores acima foram escolhidos para a aula: treino em poucos minutos.
+# Em um projeto real, o número de epochs se decide medindo (rasa test),
+# não por regra fixa.

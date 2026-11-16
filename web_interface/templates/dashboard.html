@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block titulo %}Dashboard{% endblock %}
+{% block conteudo %}
+<section class="painel largo">
+  <div class="raiox-topo">
+    <h1>Dashboard <small>dados lidos do banco SQLite — nada é simulado</small></h1>
+    <label class="chave"><input type="checkbox" id="dash-turma"> ver a turma toda</label>
+    <a id="dash-csv" class="botao" href="/api/export.csv">Exportar CSV</a>
+  </div>
+  <div class="cartoes" id="dash-cartoes"></div>
+  <div class="dash-grade">
+    <article><h2>Últimos 7 dias</h2><div id="dash-serie" class="grafico-dias"></div></article>
+    <article><h2>Por tipo <small>7 dias</small></h2><div id="dash-tipos" class="barras"></div></article>
+    <article><h2>Por intensidade <small>7 dias</small></h2><div id="dash-intensidade" class="barras"></div></article>
+    <article><h2>Agenda</h2><ul id="dash-agenda" class="lista-simples"></ul></article>
+  </div>
+  <h2>Atividades recentes</h2>
+  <label class="so-leitor" for="dash-filtro">Filtrar atividades</label>
+  <input id="dash-filtro" type="search" placeholder="Filtrar por tipo, data ou usuário">
+  <div class="tabela-rolagem"><table id="dash-tabela"><thead><tr><th>Data</th><th>Hora</th><th>Tipo</th><th>Duração</th><th>Intensidade</th><th>Usuário</th></tr></thead><tbody></tbody></table></div>
+</section>
+{% endblock %}
