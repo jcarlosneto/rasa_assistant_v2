@@ -1,0 +1,12 @@
+# CORRECAO AO VIVO - exemplos que ensinam "h2o" ao modelo
+# ========================================================
+# Aplicar:   python run.py corrigir-ao-vivo
+# Desfazer:  python run.py desfazer-correcao
+# As linhas abaixo sao inseridas no intent registrar_atividade_rapido de rasa/data/nlu.yml.
+# Repare: o sinonimo "h2o -> agua" JA existia no nlu.yml. O que faltava era o
+# modelo ver "h2o" marcado como entidade em alguma frase de exemplo.
+- bebi [h2o](tipo_atividade)
+- tomei [h2o](tipo_atividade)
+- bebi um copo de [h2o](tipo_atividade)
+- [h2o](tipo_atividade)
+- tomei bastante [h2o](tipo_atividade) hoje

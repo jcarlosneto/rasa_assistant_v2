@@ -144,9 +144,6 @@ IMPLEMENTACAO_*.md
 .run/
 logs/
 web_interface/replay/duelos_gravados.json
-# ATENCAO: demo/ contem demo/correcao_ao_vivo/nlu_patch_h2o.yml, usado por
-# `python run.py corrigir-ao-vivo` (run.py, linha 45). Quem clonar o repositorio nao tera o arquivo.
-demo/
 
 # Evidencias de auditoria (mantidas fora do Git)
 _evidencias/
