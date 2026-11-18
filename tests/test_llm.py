@@ -77,6 +77,7 @@ def test_formato_do_pedido_e_leitura_da_resposta(monkeypatch, servidor, provedor
     assert "chave-de-teste" in cabecalhos[cabecalho.lower()]
     assert pedido["corpo"]["model"] == "modelo-de-teste"
     assert pedido["corpo"]["messages"][-1] == {"role": "user", "content": "tomei um café"}
+    assert pedido["corpo"]["temperature"] == 0          # duelo repetivel
 
 
 def test_erro_do_provedor_vira_mensagem_e_nao_excecao(monkeypatch, servidor):

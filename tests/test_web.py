@@ -30,8 +30,10 @@ TRACKER = {
 @pytest.fixture
 def cliente(tmp_path, monkeypatch):
     monkeypatch.setenv("DATABASE_PATH", str(tmp_path / "web.db"))
-    for nome in ("LLM_PROVIDER", "LLM_API_KEY", "LLM_MODEL"):
-        monkeypatch.delenv(nome, raising=False)
+    # Vazias (e nao apagadas): o app chama carregar_env() ao ser recarregado e, com variaveis
+    # ausentes, leria o .env real da maquina, ligando o LLM e fazendo chamadas de rede no teste.
+    for nome in ("LLM_PROVIDER", "LLM_API_KEY", "LLM_MODEL", "LLM_BASE_URL"):
+        monkeypatch.setenv(nome, "")
     import app as modulo
     modulo = importlib.reload(modulo)
     estado = {"tracker": TRACKER, "respostas": [{"text": "✅ Registrei: musculação · 60 min."}], "fora": False}

@@ -40,6 +40,9 @@ Hoje é {hoje}. Leia a mensagem do usuário e responda SOMENTE com um objeto JSO
 "resposta": uma frase curta e simpática, em português do Brasil, que o assistente diria
 Regras: não invente dados que não estão na mensagem; beber café, comer ou assuntos gerais NÃO são atividades registráveis (use "fora_de_escopo")."""
 VERSAO_PROMPT = "duelo-v1"
+# 0 = a mesma frase tende a receber a mesma resposta (comparacao justa com o Rasa,
+# que e deterministico). Nao garante repeticao exata em todo provedor/hardware.
+TEMPERATURA = 0
 
 
 def configuracao():
@@ -99,14 +102,14 @@ def interpretar(mensagem, timeout=None):
             bruto = _post_json(
                 cfg["base_url"] + "/messages",
                 {"x-api-key": cfg["_chave"], "anthropic-version": "2023-06-01"},
-                {"model": cfg["modelo"], "max_tokens": 400, "system": sistema,
+                {"model": cfg["modelo"], "max_tokens": 400, "system": sistema, "temperature": TEMPERATURA,
                  "messages": [{"role": "user", "content": mensagem}]}, timeout)
             texto = "".join(b.get("text", "") for b in bruto.get("content", []) if b.get("type") == "text")
         else:
             bruto = _post_json(
                 cfg["base_url"] + "/chat/completions",
                 {"Authorization": "Bearer " + cfg["_chave"]},
-                {"model": cfg["modelo"],
+                {"model": cfg["modelo"], "temperature": TEMPERATURA,
                  "messages": [{"role": "system", "content": sistema},
                               {"role": "user", "content": mensagem}]}, timeout)
             texto = bruto["choices"][0]["message"]["content"]

@@ -63,6 +63,18 @@ class WeatherAPI:
         
         if self.api_key:
             print("✅ [WEATHER API] API key configurada!")
+
+    def _sem_chave(self, erro) -> str:
+        """
+        🔒 Texto do erro SEM a API key.
+
+        💡 POR QUE?
+        As mensagens de erro do `requests` trazem a URL completa, e a URL
+        leva a chave (`appid=...`). Sem esta limpeza, a chave iria parar
+        nos logs (logs/actions.log) a cada erro de rede ou HTTP.
+        """
+        texto = str(erro)
+        return texto.replace(self.api_key, "***") if self.api_key else texto
     
     def obter_clima(self, cidade: str) -> Optional[Dict[str, Any]]:
         """
@@ -135,12 +147,12 @@ class WeatherAPI:
             
         except requests.exceptions.HTTPError as e:
             # ❌ Erro HTTP (ex: 404 cidade não encontrada, 401 key inválida)
-            print(f"❌ [WEATHER API] Erro HTTP: {e}")
+            print(f"❌ [WEATHER API] Erro HTTP: {self._sem_chave(e)}")
             return None
             
         except requests.exceptions.RequestException as e:
             # 🌐 Erro de conexão (ex: sem internet)
-            print(f"🌐 [WEATHER API] Erro de conexão: {e}")
+            print(f"🌐 [WEATHER API] Erro de conexão: {self._sem_chave(e)}")
             return None
             
         except KeyError as e:
@@ -150,7 +162,7 @@ class WeatherAPI:
             
         except Exception as e:
             # 🐛 Qualquer outro erro
-            print(f"🐛 [WEATHER API] Erro inesperado: {e}")
+            print(f"🐛 [WEATHER API] Erro inesperado: {self._sem_chave(e)}")
             return None
     
     def obter_clima_multiple_cidades(self, cidades: list) -> Dict[str, Optional[Dict[str, Any]]]:
